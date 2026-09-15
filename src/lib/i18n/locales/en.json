@@ -1,0 +1,630 @@
+{
+  "common": {
+    "home": "Home",
+    "search": "Search",
+    "aboutUs": "About Us",
+    "achievements": "Our Achievements",
+    "community": "My Community",
+    "contact": "Contact Us",
+    "support": "Support",
+    "latestReleases": "Latest Releases",
+    "ourNews": "Blogs",
+    "news": "Blogs",
+    "login": "Login",
+    "logout": "Logout",
+    "back": "Back",
+    "cancel": "Cancel",
+    "submit": "Submit",
+    "close": "Close",
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "success": "Success",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "more": "More",
+    "call": "Call",
+    "commercial": "Commercial & Rental"
+  },
+  "footer": {
+    "nav": "Footer navigation",
+    "copyright": "© {{year}} Faisal Bin Saedan. All rights reserved.",
+    "developedBy": "Developed with love by"
+  },
+  "siteContactBar": {
+    "label": "Contact and social media"
+  },
+  "ach": {
+    "title": "Our Achievements",
+    "subtitle": "Milestones that shaped our story and the recognition that reflects our commitment to quality and innovation.",
+    "stats": {
+      "years": "Years of Excellence",
+      "projects": "Projects Delivered",
+      "units": "Units Delivered",
+      "families": "Families Served"
+    },
+    "timeline": {
+      "title": "Timeline",
+      "subtitle": "A Journey of Growth"
+    },
+    "snapshot": {
+      "kicker": "Company Snapshot",
+      "title": "A legacy of development, built for today",
+      "subtitle": "A modern extension of the Bin Saedan family legacy since 1934—focused on high-quality residential and commercial destinations, investment solutions, and long-term property care across Saudi Arabia.",
+      "cards": {
+        "residential": {
+          "title": "Residential Communities",
+          "desc": "Malfa and Nozol developments—villas, modern complexes, and semi-gated neighborhoods designed for everyday living."
+        },
+        "commercial": {
+          "title": "Commercial Destinations",
+          "desc": "Plazas and office assets in strategic locations, built to support thriving business districts."
+        },
+        "investment": {
+          "title": "Investment Solutions",
+          "desc": "Professionally managed real estate funds that offer structured opportunities for individuals and institutions."
+        },
+        "management": {
+          "title": "Property Management",
+          "desc": "Long-term maintenance, leasing, and customer support to protect asset value beyond delivery."
+        }
+      },
+      "highlights": {
+        "legacy": {
+          "title": "Heritage & Land Bank",
+          "desc": "Decades of trust and a strategic portfolio that supports sustainable urban growth."
+        },
+        "quality": {
+          "title": "Modern Delivery",
+          "desc": "Using advanced practices like BIM to improve efficiency, reduce waste, and elevate design quality."
+        },
+        "vision": {
+          "title": "Vision 2030 Alignment",
+          "desc": "Contributing to homeownership growth and workforce development through nationally aligned initiatives."
+        }
+      }
+    },
+    "awards": {
+      "title": "Recognition",
+      "subtitle": "Awards & Certifications"
+    },
+    "press": {
+      "title": "What the Press Says"
+    }
+  },
+  "about": {
+    "title": "About Us",
+    "subtitle": "Learn about our board members and our strategic vision and mission.",
+    "companyIntroTitle": "About the Company",
+    "companyIntroBody": "It is a real estate development company that was established to be an active partner in the real estate scene of the Kingdom of Saudi Arabia by implementing exceptional residential and commercial real estate innovations. Since its inception, the company has worked to ensure that its projects are characterized by quality and sustainability to create spaces that meet the desires and goals of individuals and communities.",
+    "visionMissionTitle": "Vision & Mission",
+    "boardMembersTitle": "Board Members",
+    "animatedPanelTitle": "Building Tomorrow",
+    "animatedPanelBody": "Our strategy combines design quality, investment discipline, and sustainable urban value."
+  },
+  "home": {
+    "title": "Faisal Bin Saedan",
+    "subtitle": "Explore our distinguished collection of residential projects in the best locations in the Kingdom",
+    "heroTitle": "Shaping the Future",
+    "heroSubtitle": "of Real Estate",
+    "heroDescription": "We design and deliver developments that shape cities, support national progress, and create long-lasting value.",
+    "exploreProjects": "Explore Projects",
+    "scrollDown": "Scroll Down",
+    "latestProjects": "Latest Projects",
+    "whyChooseUs": "Why Choose Us",
+    "legacyTitle": "A Legacy of Trust and Quality",
+    "legacyDescription": "Building integrated communities for over three decades",
+    "qualityTitle": "Construction Quality",
+    "qualityDescription": "We adhere to the highest standards of quality in construction and finishing",
+    "locationTitle": "Strategic Locations",
+    "locationDescription": "We choose the best locations to ensure successful future investment",
+    "serviceTitle": "After-Sales Service",
+    "serviceDescription": "We provide integrated services to our clients even after delivery",
+    "ctaTitle": "Looking for Your Dream Home?",
+    "ctaDescription": "Register your interest now and our team will contact you to help you choose the right unit",
+    "registerInterest": "Register Your Interest",
+    "viewAllUnits": "View All Units",
+    "phone": "920024010",
+    "email": "customer.care@faisal-binsaedan.com / info@faisal-binsaedan.com",
+    "address": "Riyadh, Kingdom of Saudi Arabia",
+    "phasesAvailable": "{{count}} units available",
+    "soldOut": "Sold Out",
+    "phases": "phases",
+    "viewUnits": "View Units",
+    "cmaDescription": "Faisal bin Saedan Investment and Real Estate Development Company operates in accordance with approved regulatory frameworks and in coordination with the Saudi Capital Market Authority to develop and manage investment opportunities. This includes structuring and launching real estate funds in line with the highest standards of governance and compliance, thereby enhancing transparency and safeguarding investors’ interests.",
+    "cmaCollaborationTeaser": "Additional collaboration initiatives with the Saudi Capital Market Authority are coming soon.",
+    "cmaCollaborationCta": "View details",
+    "watchOnInstagram": "Watch video on Instagram",
+    "inspiringSpacesTitle": "Inspiring Spaces, Building Futures",
+    "inspiringSpacesDesc": "Through structure, discipline, and strategic foresight, we transform potential into enduring, measurable value, supporting national progress and sustainable growth.",
+    "statsTitle": "Strong foundation and advanced innovations",
+    "statsDesc": "At Faisal Bin Saedan, we strive to implement modern architectural styles and inspiring innovations with a strong foundation.",
+    "stats": {
+      "housing": "Housing units",
+      "units": "Units Available",
+      "projects": "Projects",
+      "exhibitions": "Exhibitions",
+      "drivethrough": "Drive Through",
+      "plaza": "Plaza"
+    },
+    "fields": {
+      "title": "Our Fields",
+      "readMore": "Read More →",
+      "residential": {
+        "title": "Residential",
+        "description": "Faisal bin Saedan residential projects provide inspiring havens with sustainable environmental designs that meet all your basic and luxury needs, from internal protection and living services to stunning views, as they are designed to suit your distinctive lifestyle."
+      },
+      "commercial": {
+        "title": "Commercial",
+        "description": "Our carefully selected commercial buildings inspire you to pursue your entrepreneurial dreams, as we provide the ideal starting point for whatever your business growth may be, from retail and entertainment venues to modern office space."
+      }
+    }
+  },
+  "commercial": {
+    "title": "Commercial & Rental",
+    "subtitle": "Discover premium commercial spaces and rental properties designed for your business growth.",
+    "heroTitle": "Empower Your Business",
+    "heroSubtitle": "Premium Commercial & Rental Spaces",
+    "heroDescription": "Find the perfect office, retail, or warehouse space in prime locations to elevate your business operations.",
+    "formTitle": "Register Your Interest",
+    "formCta": "Please fill out the form below to express your interest in our commercial properties. Our team will contact you shortly.",
+    "propertyType": "Property Type",
+    "propertyTypePlaceholder": "Select Property Type",
+    "project": "Project",
+    "projectPlaceholder": "Select a project",
+    "rentalBudget": "Rental Budget (SAR)",
+    "rentalBudgetPlaceholder": "e.g. 50000",
+    "numberOfRooms": "Number of Rooms",
+    "numberOfRoomsPlaceholder": "e.g. 3",
+    "rentalStartDate": "Rental Start Date",
+    "rentalEndDate": "Rental End Date",
+    "invalidDateRange": "End date must be after start date",
+    "budget": "Expected Budget (Annual)",
+    "budgetPlaceholder": "Select Budget Range",
+    "area": "Required Area (sqm)",
+    "areaPlaceholder": "e.g. 500",
+    "propertyOptions": {
+      "office": "Office Space",
+      "retail": "Retail / Shop",
+      "warehouse": "Warehouse / Logistics",
+      "other": "Other"
+    },
+    "budgetOptions": {
+      "under100k": "Under 100k SAR",
+      "100kTo500k": "100k - 500k SAR",
+      "500kTo1m": "500k - 1M SAR",
+      "above1m": "Above 1M SAR"
+    }
+  },
+  "collaboration": {
+    "title": "Collaboration — coming soon",
+    "description": "We are preparing additional programs in coordination with the Saudi Capital Market Authority. This page will be updated with more information in due course.",
+    "backToHome": "Back to home"
+  },
+  "search": {
+    "title": "Search for a Unit",
+    "searching": "Searching...",
+    "unitsFound": "{{count}} units",
+    "projectsFound": "{{count}} projects",
+    "noResults": "No Results",
+    "noResultsDescription": "Try changing your search criteria to find other units",
+    "modifyFilters": "Modify Filters",
+    "filters": "Filters",
+    "viewGrid": "Grid View",
+    "viewList": "List View",
+    "filter": "Filter",
+    "filterResults": "Filter Results",
+    "reset": "Reset",
+    "project": "Project",
+    "propertyType": "Property Type",
+    "model": "Model",
+    "bedrooms": "Number of Rooms",
+    "priceRange": "Price Range",
+    "eligibleForSubsidies": "Eligible for subsidies (Sakani / Ministry of Defense)",
+    "applyFilters": "Apply Filters",
+    "previous": "Previous",
+    "next": "Next",
+    "autocomplete": {
+      "placeholder": "Search for a project or phase...",
+      "popular1": "Apartments for sale in Riyadh",
+      "popular2": "Villas in Jeddah",
+      "popular3": "Residential Units",
+      "popular4": "New Projects",
+      "clearedRecent": "Recent search history cleared",
+      "mockProject": "Project",
+      "mockPhase": "Phase",
+      "popular": "Popular",
+      "recentSearch": "Recent Searches:"
+    },
+    "options": {
+      "all": "All",
+      "allProjects": "All Projects",
+      "oneRoom": "1 Room",
+      "twoRooms": "2 Rooms",
+      "threeRooms": "3 Rooms",
+      "fourRooms": "4 Rooms",
+      "fivePlusRooms": "5+ Rooms",
+      "price": {
+        "opt1": "Less than 1 Million SAR",
+        "opt2": "1 - 2 Million SAR",
+        "opt3": "2 - 3 Million SAR",
+        "opt4": "3 - 5 Million SAR",
+        "opt5": "More than 5 Million SAR"
+      }
+    }
+  },
+  "unit": {
+    "details": "Unit Details",
+    "price": "Price",
+    "bedrooms": "Bedrooms",
+    "bathrooms": "Bathrooms",
+    "area": "Area",
+    "delivery": "Delivery",
+    "status": "Status",
+    "available": "Available",
+    "reserved": "Reserved",
+    "sold": "Sold",
+    "residential": "Residential",
+    "commercial": "Commercial",
+    "registerInterest": "Register Interest",
+    "contactSupport": "Contact Support",
+    "openCase": "Open a Case",
+    "project": "Project",
+    "phase": "Phase",
+    "unitNumber": "Unit Number",
+    "similarUnits": "Similar Units",
+    "bedroomsLabel": "Bedrooms",
+    "bathroomsLabel": "Bathrooms",
+    "areaLabel": "Area",
+    "deliveryLabel": "Delivery",
+    "description": "Description",
+    "modelLayout": "Unit model layout",
+    "openSupportCase": "Open Support Case",
+    "areaUnit": "m²"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "description": "We're here to help. Contact us for any inquiries or feedback",
+    "formTitle": "Send us a Message",
+    "formCta": "Open the form to share your details and message—we will respond as soon as we can.",
+    "profileQuestion": "What's your profile? *",
+    "profileRequired": "Please choose a profile",
+    "profileOptions": {
+      "investor": "Investor",
+      "supplier": "Supplier",
+      "operator": "Operator",
+      "customer": "Customer",
+      "company": "Company Name"
+    },
+    "name": "Name",
+    "namePlaceholder": "Your name",
+    "region": "Region",
+    "regionPlaceholder": "Your region",
+    "city": "City",
+    "cityPlaceholder": "Your city",
+    "project": "Project",
+    "projectPlaceholder": "Project name",
+    "notSpecified": "Not specified",
+    "loadingProjects": "Loading options…",
+    "email": "Email",
+    "phone": "Phone",
+    "message": "Your Message",
+    "messageTooShort": "Please enter at least 3 characters",
+    "send": "Send",
+    "sent": "Message sent successfully",
+    "contactInfo": "Contact Information",
+    "phoneLabel": "Phone",
+    "emailLabel": "Email",
+    "addressLabel": "Address",
+    "address": "Riyadh, Kingdom of Saudi Arabia",
+    "workingHours": "Working Hours",
+    "workingHoursValue": "Sunday - Thursday, 9 AM - 5 PM",
+    "followUs": "Follow Us",
+    "mapPlaceholder": "Map will appear here",
+    "mapTitle": "Office Location",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "firstNamePlaceholder": "Ahmed",
+    "lastNamePlaceholder": "Al-Rashid",
+    "emailPlaceholder": "ahmed@example.com",
+    "phonePlaceholder": "501234567",
+    "phoneHint": "Enter mobile number without country code",
+    "countryCode": "Country code",
+    "messagePlaceholder": "How can we help you?",
+    "supplierPdfLabel": "Supplier document (PDF)",
+    "supplierPdfHint": "Upload your company profile or registration document (PDF, max 5 MB).",
+    "supplierPdfRequired": "Please upload a PDF document",
+    "supplierPdfInvalid": "Only PDF files are allowed",
+    "supplierPdfTooLarge": "PDF must be 5 MB or smaller",
+    "supplierPdfSelected": "Selected: {{name}}",
+    "submitting": "Sending...",
+    "messageSent": "Your message has been sent!",
+    "willContactSoon": "We will contact you soon",
+    "errorOccurred": "An error occurred. Please try again.",
+    "phoneSaudiInvalid": "Please enter a valid Saudi mobile number (without country code). Example: 501234567"
+  },
+  "registerInterest": {
+    "title": "Register Your Interest",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "email": "Email",
+    "phone": "Phone",
+    "notes": "Notes (Optional)",
+    "submitting": "Submitting...",
+    "success": "Registration Successful!",
+    "successMessage": "We will contact you soon",
+    "firstNamePlaceholder": "Ahmed",
+    "lastNamePlaceholder": "Al-Rashid",
+    "emailPlaceholder": "ahmed@example.com",
+    "phonePlaceholder": "Phone",
+    "notesPlaceholder": "Any inquiries or notes...",
+    "firstNameRequired": "First name is required",
+    "lastNameRequired": "Last name is required",
+    "emailInvalid": "Invalid email address",
+    "phoneInvalid": "Invalid phone number",
+    "errorOccurred": "An error occurred. Please try again."
+  },
+  "favorites": {
+    "add": "Add to Favorites",
+    "remove": "Remove from Favorites",
+    "added": "Unit added to favorites",
+    "removed": "Unit removed from favorites"
+  },
+  "share": {
+    "share": "Share",
+    "copyLink": "Copy Link",
+    "copied": "Copied",
+    "whatsapp": "WhatsApp",
+    "twitter": "Twitter",
+    "facebook": "Facebook",
+    "instagram": "Instagram",
+    "linkedin": "LinkedIn",
+    "snapchat": "Snapchat",
+    "tiktok": "TikTok",
+    "youtube": "YouTube",
+    "success": "Shared successfully"
+  },
+  "community": {
+    "welcome": "Welcome",
+    "welcomeMessage": "Welcome to Faisal Bin Saedan Community",
+    "myUnits": "My Units",
+    "myCases": "My Cases",
+    "noUnits": "No Units",
+    "noUnitsDescription": "No units registered under your name",
+    "exploreUnits": "Explore Units",
+    "newCase": "New Case",
+    "activeCases": "Active Cases",
+    "unitsCount": "My Units",
+    "casesCount": "My Requests",
+    "paymentPlan": "Payment Plan",
+    "fullyPaid": "Fully Paid",
+    "newRequest": "New Request",
+    "noRequests": "No Requests",
+    "deliveryDate": "Delivery: {{date}}"
+  },
+  "calculator": {
+    "title": "Finance Calculator",
+    "unitPrice": "Unit Price",
+    "downPayment": "Down Payment",
+    "downPaymentValue": "{{value}}%",
+    "loanTerm": "Loan Term",
+    "loanTermValue": "{{value}} years",
+    "interestRate": "Interest Rate (%)",
+    "loanAmount": "Loan Amount",
+    "monthlyPayment": "Monthly Payment",
+    "totalInterest": "Total Interest",
+    "totalAmount": "Total Amount",
+    "close": "Close",
+    "print": "Print"
+  },
+  "login": {
+    "title": "Login",
+    "subtitle": "Login to your account to access your community",
+    "username": "Username",
+    "password": "Password",
+    "submit": "Login",
+    "submitting": "Logging in...",
+    "errorGeneric": "An error occurred. Please try again.",
+    "backToHome": "Back to Home",
+    "noAccount": "Don't have an account?",
+    "contactUs": "Contact Us",
+    "usernameRequired": "Username is required",
+    "passwordRequired": "Password is required"
+  },
+  "offline": {
+    "title": "No internet connection",
+    "description": "You appear to be offline. Check your connection and try again.",
+    "retry": "Try again"
+  },
+  "cases": {
+    "title": "New Case",
+    "subtitle": "You will be contacted as soon as possible",
+    "form": {
+      "unit": "Related Unit",
+      "chooseUnit": "Choose Unit (Optional)",
+      "type": "Case Type",
+      "subject": "Subject",
+      "subjectPlaceholder": "Example: AC Maintenance",
+      "details": "Details",
+      "detailsPlaceholder": "Explain your request in detail...",
+      "submit": "Submit Case",
+      "submitting": "Submitting...",
+      "cancel": "Cancel",
+      "successTitle": "Case Created Successfully!",
+      "successMessage": "We will contact you soon",
+      "error": "An error occurred. Please try again.",
+      "validation": {
+        "subjectRequired": "Subject is required (min 5 chars)",
+        "descriptionRequired": "Description is required (min 10 chars)",
+        "unitRequired": "Please select the unit this request relates to"
+      }
+    },
+    "status": {
+      "new": "New",
+      "inProgress": "In Progress",
+      "resolved": "Resolved",
+      "closed": "Closed"
+    },
+    "category": {
+      "maintenance": "Maintenance",
+      "inquiry": "Inquiry",
+      "complaint": "Complaint",
+      "documentation": "Documentation",
+      "other": "Other"
+    },
+    "empty": {
+      "title": "No Cases",
+      "description": "You can open a new case from the button above"
+    }
+  },
+  "installBanner": {
+    "title": "Better experience with the app",
+    "description": "Install Faisal Bin Saedan app for quick access",
+    "install": "Install"
+  },
+  "brokerLanding": {
+    "badge": "Premium Real Estate Domain",
+    "title": "Owned & Managed by Professional Brokers",
+    "description": "This premium digital asset is strategically positioned for the real estate market. Fully integrated with Salesforce, automated lead capturing, and PWA capabilities.",
+    "features": {
+      "salesforce": {
+        "title": "Salesforce CRM",
+        "desc": "Integrated workflows for real estate management."
+      },
+      "pwa": {
+        "title": "PWA Technology",
+        "desc": "Mobile-first experience for field agents."
+      },
+      "ready": {
+        "title": "Ready to Deploy",
+        "desc": "Full-stack solution for property listing."
+      }
+    },
+    "ownershipRights": "Ownership Rights",
+    "priceUSD": "$5,000",
+    "priceSAR": "18,750 SAR",
+    "perMonth": "/mo",
+    "viewDemo": "View Demo Website",
+    "demoDesc": "Experience the full capabilities of the platform",
+    "callNow": "Call now",
+    "copyright": "Broker Property Management. All rights reserved.",
+    "whatsapp": "Chat on WhatsApp"
+  },
+  "ourNewsPage": {
+    "title": "Our News",
+    "subtitle": "Company updates, announcements, and media coverage from Faisal Bin Saedan.",
+    "placeholder": {
+      "title": "Content coming soon",
+      "description": "Our news section is being prepared. Articles, press releases, and company updates will be published here shortly.",
+      "note": "Content for this page will be provided by the FBS team."
+    },
+    "contactCta": "Contact us"
+  },
+  "latestReleasesPage": {
+    "title": "Latest Releases",
+    "subtitle": "Explore our portfolio of residential and commercial developments across Saudi Arabia.",
+    "status": {
+      "active": "Active",
+      "completed": "Completed"
+    },
+    "count_one": "{{count}} project",
+    "count_other": "{{count}} projects",
+    "empty": {
+      "title": "No projects found",
+      "description": "Check back soon for new releases with available units."
+    },
+    "viewProject": "View project",
+    "noImage": "No image available"
+  },
+  "project": {
+    "notFound": "Project not found",
+    "notes": "Notes",
+    "noNotes": "No notes",
+    "attachments": "Attachments",
+    "noAttachments": "No attachments",
+    "location": "Location",
+    "summary": "About the Project",
+    "nearbyLocations": "Nearby Locations",
+    "models": "Unit Models",
+    "modelLabel": "Model {{number}}",
+    "openModelFile": "Open file",
+    "clickToEnlarge": "Click to enlarge"
+  },
+  "news": {
+    "title": "Latest Press Releases and Real Estate News",
+    "readingTime": "Reading time: {{minutes}} minutes",
+    "share": "Share",
+    "followUs": "Follow Us",
+    "relatedPosts": "Related Posts",
+    "backToListings": "Back to listings",
+    "year": "Year",
+    "month": "Month",
+    "businessSegment": "Business Segment",
+    "searchKeywords": "Search keywords",
+    "all": "All",
+    "select": "Select",
+    "empty": "No news articles found.",
+    "blogTitle": "Blog",
+    "blogSubtitle": "Insights, market updates, and stories from Faisal Bin Saedan.",
+    "continueReading": "Continue reading",
+    "categories": "Categories",
+    "recentPosts": "Recent Posts",
+    "allCategories": "All Posts",
+    "badge": "Blog"
+  },
+  "chatbot": {
+    "greeting": "Welcome to Faisal Bin Saedan! I'm Sara, your digital assistant. How can I help you today?",
+    "menu": {
+      "projects": "Explore Projects & Units",
+      "services": "Our Services",
+      "contact": "Contact Sales / Register Interest",
+      "findUnit": "🔍 Find the Perfect Unit",
+      "browseAll": "📂 Browse All Projects"
+    },
+    "link": {
+      "projects": "You can explore our latest residential and commercial communities on our Projects page: /projects",
+      "services": "We offer a range of services from property management to investment solutions. Learn more on our About page: /about-us"
+    },
+    "findUnitIntro": "I can help you find available units based on your preferences. Let's start! What is your preferred location?",
+    "location": {
+      "riyadh": "Riyadh",
+      "kaec": "KAEC",
+      "any": "Any Location"
+    },
+    "askBudget": "What is your budget range?",
+    "budget": {
+      "under_1_5m": "Under 1.5M SAR",
+      "between_1_5m_3m": "1.5M - 3M SAR",
+      "above_3m": "Above 3M SAR",
+      "any": "Any Budget"
+    },
+    "askBedrooms": "How many bedrooms do you need?",
+    "bedrooms": {
+      "two": "2 Bedrooms",
+      "three": "3 Bedrooms",
+      "four_plus": "4+ Bedrooms",
+      "any": "Any Number"
+    },
+    "proposalsFound": "Great news! I found these matching available units for you:",
+    "noProposalsFound": "I couldn't find available units matching those exact preferences, but here are some of our premium active listings you might like:",
+    "unitCard": {
+      "viewDetails": "View Details",
+      "interested": "I'm Interested",
+      "area": "Area"
+    },
+    "askName": "Great! I'll connect you with our sales team. First, what is your full name?",
+    "askCountry": "Nice to meet you! Please enter your mobile country code (e.g. +966).",
+    "askPhone": "Thank you. What is your phone number?",
+    "askRegion": "Which region or province are you located in?",
+    "askCity": "Which city do you live in?",
+    "askCustomerType": "Are you inquiring as an individual or on behalf of a company?",
+    "customerType": {
+      "individual": "Individual (Private Customer)",
+      "company": "Company"
+    },
+    "submitting": "Thank you for the details. I am submitting your request now...",
+    "success": "Your request has been successfully received. One of our representatives will contact you shortly!",
+    "error": "I'm sorry, there was a problem submitting your request.",
+    "retry": "Try Again"
+  }
+}
