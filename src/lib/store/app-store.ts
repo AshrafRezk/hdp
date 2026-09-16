@@ -19,18 +19,12 @@ interface AppState {
   // UI State
   isFilterDrawerOpen: boolean;
   setFilterDrawerOpen: (open: boolean) => void;
-
-  // Maintenance Gate
-  isMaintenanceAuthorized: boolean;
-  authorizeMaintenance: (password: string) => boolean;
 }
 
 interface BeforeInstallPromptEvent extends Event {
   prompt: () => Promise<void>;
   userChoice: Promise<{ outcome: "accepted" | "dismissed" }>;
 }
-
-const MAINTENANCE_PASSWORD = "binsaedan2025";
 
 export const useAppStore = create<AppState>()(
   persist(
@@ -58,22 +52,11 @@ export const useAppStore = create<AppState>()(
       // UI State
       isFilterDrawerOpen: false,
       setFilterDrawerOpen: (open) => set({ isFilterDrawerOpen: open }),
-
-      // Maintenance Gate
-      isMaintenanceAuthorized: false,
-      authorizeMaintenance: (password) => {
-        if (password === MAINTENANCE_PASSWORD) {
-          set({ isMaintenanceAuthorized: true });
-          return true;
-        }
-        return false;
-      },
     }),
     {
-      name: "binsaedan-app-storage",
-      partialize: (state) => ({ 
-        isMaintenanceAuthorized: state.isMaintenanceAuthorized,
-        showInstallBanner: state.showInstallBanner 
+      name: "hdp-app-storage",
+      partialize: (state) => ({
+        showInstallBanner: state.showInstallBanner,
       }),
     }
   )

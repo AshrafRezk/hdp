@@ -7,7 +7,11 @@ function isFresh(timestamp: number) {
 
 async function fetchFeatureSwitches() {
   const url = `/api/website-feature-switch`;
-  const response = await fetch(url, { method: "GET", headers: { Accept: "application/json" } });
+  const response = await fetch(url, {
+    method: "GET",
+    headers: { Accept: "application/json" },
+    signal: AbortSignal.timeout(10000),
+  });
   if (!response.ok) throw new Error(`Feature switch API failed: ${response.status}`);
   const payload = await response.json();
   if (!payload?.success || !payload?.data?.values) throw new Error("Invalid feature switch payload");

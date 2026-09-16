@@ -1,34 +1,39 @@
 import { Box } from '@mui/material'
 import { useTranslation } from 'react-i18next'
+import { useThemeMode } from '../../contexts/ThemeModeContext'
 
-/** Public asset: HDP logo from hdp.com.eg */
-export const BRAND_LOGO_SRC = 'https://hdp.com.eg/assets/logo-87c15bc7.svg'
+/** Public asset served from this site, not the old nginx host. */
+export const BRAND_LOGO_SRC = '/hdp-logo.svg'
 
 type BrandLogoVariant = 'header' | 'footer' | 'login'
 
 type BrandLogoProps = { variant: BrandLogoVariant }
 
-/** Renders the brand logo with no wrapper background so transparent PNGs show correctly. */
+/** Renders the brand logo; cream SVG is inverted on light backgrounds. */
 export default function BrandLogo({ variant }: BrandLogoProps) {
   const { t } = useTranslation()
+  const { mode } = useThemeMode()
 
   const height =
     variant === 'header'
-      ? { xs: 44, sm: 52 }
+      ? { xs: 36, sm: 44 }
       : variant === 'footer'
-        ? { xs: 40, sm: 48 }
+        ? { xs: 36, sm: 42 }
         : { xs: 64, sm: 72 }
 
   const img = (
     <Box
       component="img"
       src={BRAND_LOGO_SRC}
-      alt={t('home.title')}
+      alt={t('home.title', 'HDP')}
       sx={{
         height,
         width: 'auto',
         display: 'block',
         mx: variant === 'login' ? 'auto' : undefined,
+        // Logo paths are #E0DFD1 — invert on light so it stays visible
+        filter: mode === 'light' ? 'brightness(0)' : 'none',
+        transition: 'filter 200ms ease',
       }}
     />
   )
