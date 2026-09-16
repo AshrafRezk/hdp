@@ -711,11 +711,9 @@ interface SalesforceUnitMapRecord {
   Map_Show_On_Map__c?: boolean
   Building__r?: {
     Name?: string
-    Block__r?: {
-      Phase__r?: {
-        Name?: string
-      }
-    }
+  }
+  Phase__r?: {
+    Name?: string
   }
 }
 
@@ -743,9 +741,9 @@ export async function getProjectMapUnits(projectId: string) {
   try {
     const soql = `SELECT Id, Name, Status__c, Price__c, Number_of_Bedrooms__c, Number_of_Bathrooms__c, BUA__c,
                   Map_Centroid_Lat__c, Map_Centroid_Lng__c, Map_Geometry_JSON__c, Map_Show_On_Map__c,
-                  Building__r.Name, Building__r.Block__r.Phase__r.Name
+                  Building__r.Name, Phase__r.Name
                   FROM Unit__c
-                  WHERE Building__r.Block__r.Phase__r.Project__c = '${projectId}'
+                  WHERE Project__c = '${projectId}'
                   ORDER BY Name`
 
     const result = await salesforceQuery<SalesforceUnitMapRecord>(soql)
@@ -759,7 +757,7 @@ export async function getProjectMapUnits(projectId: string) {
       bathrooms: typeof u.Number_of_Bathrooms__c === 'number' ? u.Number_of_Bathrooms__c : undefined,
       bua: typeof u.BUA__c === 'number' ? u.BUA__c : undefined,
       buildingName: u.Building__r?.Name?.trim() || undefined,
-      phaseName: u.Building__r?.Block__r?.Phase__r?.Name?.trim() || undefined,
+      phaseName: u.Phase__r?.Name?.trim() || undefined,
       mapCentroidLat: typeof u.Map_Centroid_Lat__c === 'number' ? u.Map_Centroid_Lat__c : undefined,
       mapCentroidLng: typeof u.Map_Centroid_Lng__c === 'number' ? u.Map_Centroid_Lng__c : undefined,
       mapGeometryJson: parseMapGeometryJson(u.Map_Geometry_JSON__c),
@@ -796,31 +794,16 @@ function resolveAvailableUnitsCount(
   return live > 0 ? live : rollup
 }
 
-function projectIdPrefixForUnitMatch(projectId: string): string {
-  return projectId.substring(0, 15).toLowerCase()
-}
-
-function resolveProjectIdFromUnitProjectField(
-  value: string | undefined,
-  prefixToProjectId: Map<string, string>
-): string | undefined {
-  const extracted = extractSalesforceIdFromAnchor(value) || value || ''
-  if (!extracted) return undefined
-  return prefixToProjectId.get(extracted.substring(0, 15).toLowerCase())
-}
-
 async function getAvailableUnitsCountForProject(
   projectId: string,
   rollupCount?: number | null
 ): Promise<number> {
   if (!isValidSalesforceId(projectId)) return 0
 
-  const projectPrefix = projectIdPrefixForUnitMatch(projectId)
-
   try {
-    // Unit__c.Project__c is an HTML link field, not a lookup — match the embedded project id.
+    // Unit__c.Project__c is a lookup on HDP.
     const result = await salesforceQuery<Record<string, unknown>>(
-      `SELECT COUNT(Id) unitCount FROM Unit__c WHERE Project__c LIKE '%${projectPrefix}%' AND Status__c = 'Available'`
+      `SELECT COUNT(Id) unitCount FROM Unit__c WHERE Project__c = '${projectId}' AND Status__c = 'Available'`
     )
     return resolveAvailableUnitsCount(
       parseSalesforceAggregateCount(result.records?.[0]),
@@ -837,30 +820,18 @@ async function getAvailableUnitsCountsForProjects(projectIds: string[]): Promise
   const validIds = projectIds.filter(isValidSalesforceId)
   if (validIds.length === 0) return counts
 
-  const prefixToProjectId = new Map<string, string>()
   for (const projectId of validIds) {
     counts.set(projectId, 0)
-    prefixToProjectId.set(projectIdPrefixForUnitMatch(projectId), projectId)
   }
 
-  const pageSize = 2000
-  let offset = 0
-
-  while (true) {
-    const result = await salesforceQuery<{ Project__c?: string }>(
-      `SELECT Project__c FROM Unit__c WHERE Status__c = 'Available' ORDER BY Id LIMIT ${pageSize} OFFSET ${offset}`
-    )
-    const records = result.records || []
-    if (records.length === 0) break
-
-    for (const record of records) {
-      const projectId = resolveProjectIdFromUnitProjectField(record.Project__c, prefixToProjectId)
-      if (!projectId) continue
-      counts.set(projectId, (counts.get(projectId) ?? 0) + 1)
-    }
-
-    if (records.length < pageSize) break
-    offset += pageSize
+  const idsSoql = validIds.map((id) => `'${id}'`).join(',')
+  const result = await salesforceQuery<{ Project__c?: string } & Record<string, unknown>>(
+    `SELECT Project__c, COUNT(Id) unitCount FROM Unit__c WHERE Status__c = 'Available' AND Project__c IN (${idsSoql}) GROUP BY Project__c`
+  )
+  for (const record of result.records || []) {
+    const projectId = record.Project__c
+    if (!projectId) continue
+    counts.set(projectId, parseSalesforceAggregateCount(record))
   }
 
   return counts
