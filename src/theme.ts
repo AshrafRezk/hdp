@@ -3,34 +3,34 @@ import { createTheme, type Direction } from '@mui/material/styles'
 const sharedThemeOptions = {
   palette: {
     primary: {
-      main: '#1a365d',
-      light: '#2c5282',
-      dark: '#0f1f3a',
+      main: '#908146',
+      light: '#9C9069',
+      dark: '#7a6d3a',
     },
     secondary: {
-      main: '#2c5282',
-      light: '#799fbc',
-      dark: '#1a365d',
+      main: '#141718',
+      light: '#353535',
+      dark: '#000000',
     },
     background: {
-      default: '#fafafa',
+      default: '#eceae0',
       paper: '#ffffff',
     },
     text: {
-      primary: '#1a202c',
-      secondary: '#4a5568',
+      primary: '#141718',
+      secondary: '#353535',
     },
     success: {
-      main: '#38a169',
-      light: '#f0fff4',
+      main: '#28a745',
+      light: '#d4edda',
     },
     warning: {
-      main: '#c05621',
-      light: '#fffaf0',
+      main: '#ffc107',
+      light: '#fff3cd',
     },
     error: {
-      main: '#c53030',
-      light: '#fff5f5',
+      main: '#dc3545',
+      light: '#f8d7da',
     },
   },
   components: {
@@ -70,8 +70,8 @@ export function createAppTheme(direction: Direction) {
     direction,
     typography: {
       fontFamily: isRtl
-        ? '"PP Neue Montreal Arabic", system-ui, sans-serif'
-        : '"PP Telegraf", system-ui, sans-serif',
+        ? '"BentonSans", system-ui, sans-serif'
+        : '"BentonSans", system-ui, sans-serif',
       h1: {
         fontWeight: isRtl ? 700 : 600,
         fontSize: '2rem',

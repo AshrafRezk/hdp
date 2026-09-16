@@ -1,8 +1,8 @@
 import { Box } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 
-/** Public asset: vertical FBS + Arabic wordmark (use PNG with alpha for transparent background) */
-export const BRAND_LOGO_SRC = '/FBS_Logo_Vertical_AR.png'
+/** Public asset: HDP logo from hdp.com.eg */
+export const BRAND_LOGO_SRC = 'https://hdp.com.eg/assets/logo-87c15bc7.svg'
 
 type BrandLogoVariant = 'header' | 'footer' | 'login'
 

@@ -28,7 +28,7 @@
   },
   "footer": {
     "nav": "Footer navigation",
-    "copyright": "© {{year}} Faisal Bin Saedan. All rights reserved.",
+    "copyright": "© {{year}} HDP. All rights reserved.",
     "developedBy": "Developed with love by"
   },
   "siteContactBar": {
@@ -103,7 +103,7 @@
     "animatedPanelBody": "Our strategy combines design quality, investment discipline, and sustainable urban value."
   },
   "home": {
-    "title": "Faisal Bin Saedan",
+    "title": "HDP",
     "subtitle": "Explore our distinguished collection of residential projects in the best locations in the Kingdom",
     "heroTitle": "Shaping the Future",
     "heroSubtitle": "of Real Estate",

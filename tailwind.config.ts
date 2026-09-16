@@ -7,8 +7,8 @@ export default {
       fontFamily: {
         sans: ['var(--font-sans)'],
         display: ['var(--font-display)'],
-        arabic: ['"PP Neue Montreal Arabic"', 'system-ui', 'sans-serif'],
-        english: ['"PP Telegraf"', 'system-ui', 'sans-serif'],
+        arabic: ['"BentonSans"', 'system-ui', 'sans-serif'],
+        english: ['"BentonSans"', 'system-ui', 'sans-serif'],
       },
       colors: {
         primary: 'hsl(var(--primary))',

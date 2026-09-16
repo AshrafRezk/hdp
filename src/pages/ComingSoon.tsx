@@ -70,8 +70,8 @@ export default function ComingSoon() {
             }}
           >
             <motion.img
-              src="/BinSaedanLogo-White.png"
-              alt="Bin Saedan"
+              src="https://hdp.com.eg/assets/logo-87c15bc7.svg"
+              alt="HDP Logo"
               style={{ height: '90px', marginBottom: '32px' }}
               initial={{ scale: 0.8 }}
               animate={{ scale: 1 }}

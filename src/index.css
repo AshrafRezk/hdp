@@ -68,36 +68,36 @@
 @tailwind utilities;
 
 :root {
-  --font-sans: 'PP Telegraf', system-ui, sans-serif;
-  --font-display: 'PP Telegraf', system-ui, sans-serif;
+  --font-sans: 'BentonSans', system-ui, sans-serif;
+  --font-display: 'Cera Pro', system-ui, sans-serif;
 
-  /* Match inspire-hub FBS theme tokens (for Tailwind `bg-card`, `text-muted-foreground`, gradients, etc.) */
-  --background: 208 38% 96%;
-  --foreground: 210 64% 18%;
+  /* HDP Theme tokens */
+  --background: 52 23% 90%; /* #eceae0 */
+  --foreground: 195 9% 9%; /* #141718 */
 
-  --card: 0 0% 100%;
-  --card-foreground: 210 64% 18%;
+  --card: 0 0% 100%; /* #ffffff */
+  --card-foreground: 195 9% 9%;
 
   --popover: 0 0% 100%;
-  --popover-foreground: 210 64% 18%;
+  --popover-foreground: 195 9% 9%;
 
-  --primary: 210 64% 18%;
-  --primary-foreground: 208 38% 96%;
-  --primary-glow: 210 64% 28%;
+  --primary: 48 35% 42%; /* #908146 */
+  --primary-foreground: 0 0% 100%;
+  --primary-glow: 48 35% 32%;
 
-  --secondary: 207 50% 75%;
-  --secondary-foreground: 210 64% 18%;
+  --secondary: 48 22% 51%; /* #9C9069 */
+  --secondary-foreground: 0 0% 100%;
 
-  --muted: 208 38% 92%;
-  --muted-foreground: 210 40% 40%;
+  --muted: 52 19% 85%; /* #E0DFD1 natural-color */
+  --muted-foreground: 0 0% 21%; /* #353535 */
 
-  --aurora-1: 206 33% 61%;
-  --aurora-2: 204 15% 71%;
-  --aurora-3: 207 50% 75%;
-  --aurora-4: 208 38% 92%;
+  --aurora-1: 48 35% 52%;
+  --aurora-2: 48 22% 61%;
+  --aurora-3: 48 22% 51%;
+  --aurora-4: 52 19% 85%;
 
-  --accent: 210 50% 42%;
-  --accent-foreground: 208 38% 96%;
+  --accent: 48 35% 42%;
+  --accent-foreground: 0 0% 100%;
 
   --destructive: 0 75% 50%;
   --destructive-foreground: 40 20% 97%;
@@ -105,19 +105,19 @@
   --success: 145 55% 38%;
   --success-foreground: 40 20% 97%;
 
-  --border: 213 20% 88%;
-  --input: 213 20% 88%;
-  --ring: 213 67% 16%;
+  --border: 52 19% 85%;
+  --input: 52 19% 85%;
+  --ring: 48 35% 42%;
 
-  --radius: 0.75rem;
+  --radius: 0.5rem;
 
-  --gradient-hero: linear-gradient(180deg, hsl(213 67% 8% / 0.3) 0%, hsl(213 67% 8% / 0.65) 100%);
-  --gradient-navy: linear-gradient(135deg, hsl(213 67% 12%) 0%, hsl(213 60% 22%) 100%);
-  --gradient-gold: linear-gradient(135deg, hsl(210 50% 42%) 0%, hsl(206 33% 61%) 100%);
+  --gradient-hero: linear-gradient(180deg, hsl(195 9% 9% / 0.3) 0%, hsl(195 9% 9% / 0.8) 100%);
+  --gradient-navy: linear-gradient(135deg, hsl(195 9% 9%) 0%, hsl(195 9% 15%) 100%);
+  --gradient-gold: linear-gradient(135deg, hsl(48 35% 42%) 0%, hsl(48 22% 51%) 100%);
 
-  --shadow-elegant: 0 20px 50px -20px hsl(213 67% 16% / 0.25);
-  --shadow-soft: 0 4px 20px -4px hsl(213 30% 30% / 0.12);
-  --shadow-gold: 0 10px 30px -10px hsl(210 50% 35% / 0.4);
+  --shadow-elegant: 0 20px 50px -20px hsl(195 9% 9% / 0.25);
+  --shadow-soft: 0 4px 20px -4px hsl(195 9% 9% / 0.12);
+  --shadow-gold: 0 10px 30px -10px hsl(48 35% 42% / 0.4);
 
   --transition-smooth: cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -136,8 +136,8 @@ html {
 }
 
 [dir='rtl'] {
-  --font-sans: 'PP Neue Montreal Arabic', system-ui, sans-serif;
-  --font-display: 'PP Neue Montreal Arabic', system-ui, sans-serif;
+  --font-sans: 'BentonSans', system-ui, sans-serif;
+  --font-display: 'Cera Pro', system-ui, sans-serif;
 }
 
 body {
