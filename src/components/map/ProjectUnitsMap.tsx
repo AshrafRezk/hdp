@@ -5,6 +5,7 @@ import 'leaflet/dist/leaflet.css'
 import { Box, Chip, Stack, Typography } from '@mui/material'
 import { MapPin } from 'lucide-react'
 import CloudastickMapFootnote from './CloudastickMapFootnote'
+import { OSM_TILE_URL } from '../../lib/osmTiles'
 import type { ProjectMapUnit } from '../../lib/types'
 import {
   geometryToLatLngRings,
@@ -158,7 +159,7 @@ export default function ProjectUnitsMap({
         scrollWheelZoom
         attributionControl={false}
       >
-        <TileLayer attribution="" url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+        <TileLayer attribution="" url={OSM_TILE_URL} />
         <MapResizeInvalidate />
         <MapFitBounds
           projectGeometry={projectGeometry}

@@ -6,6 +6,7 @@ import 'leaflet/dist/leaflet.css'
 import { Box, Paper, Typography } from '@mui/material'
 import { MapPin } from 'lucide-react'
 import CloudastickMapFootnote from '../map/CloudastickMapFootnote'
+import { OSM_TILE_URL } from '../../lib/osmTiles'
 
 type GeoJsonPolygon = {
   type: 'Polygon'
@@ -83,7 +84,7 @@ export default function OpenStreetProjectMap({
         scrollWheelZoom
         attributionControl={false}
       >
-        <TileLayer attribution="" url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+        <TileLayer attribution="" url={OSM_TILE_URL} />
         {centroid && <Marker position={[centroid.lat, centroid.lng]} icon={defaultMarkerIcon} />}
         {polygons.map((ring, idx) => (
           <Polygon

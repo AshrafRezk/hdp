@@ -1,13 +1,12 @@
 import { useEffect, lazy, Suspense } from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
-import { CircularProgress, Box } from '@mui/material'
 import { useAuthStore, useAppStore } from './lib/store'
 import { useFeatureSwitchStore } from './lib/store/feature-switch-store'
 import { getCurrentUser } from './lib/api-client'
 import { getFeatureSwitchesOnLoad } from './lib/featureSwitches'
 import Layout from './components/layout/Layout'
-
-const Home = lazy(() => import('./pages/Home'))
+import HdpBootSplash from './components/boot/HdpBootSplash'
+import Home from './pages/Home'
 const Search = lazy(() => import('./pages/Search'))
 const UnitDetails = lazy(() => import('./pages/UnitDetails'))
 const ProjectDetails = lazy(() => import('./pages/ProjectDetails'))
@@ -34,8 +33,8 @@ function ProtectedRoute({ children }: { children: React.ReactNode }) {
 }
 
 function App() {
-  const { setAuth, clearAuth, setLoading } = useAuthStore()
-  const { setFeatures, getFeature, isReady } = useFeatureSwitchStore()
+  const { setAuth, setLoading } = useAuthStore()
+  const { setFeatures, getFeature } = useFeatureSwitchStore()
 
   useEffect(() => {
     let mounted = true
@@ -98,22 +97,10 @@ function App() {
     }
   }, [])
 
-  if (!isReady) {
-    return (
-      <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-        <CircularProgress />
-      </Box>
-    )
-  }
-
   return (
-    <Suspense
-      fallback={
-        <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-          <CircularProgress />
-        </Box>
-      }
-    >
+    <>
+      <HdpBootSplash />
+      <Suspense fallback={null}>
       <SiteContentProvider>
         <Routes>
           <Route path="/" element={<Layout />}>
@@ -176,7 +163,8 @@ function App() {
         </Routes>
         <Toast />
       </SiteContentProvider>
-    </Suspense>
+      </Suspense>
+    </>
   )
 }
 

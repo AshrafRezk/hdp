@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, lazy, Suspense } from 'react'
 import { Link } from 'react-router-dom'
 import { Box, Container, Typography, Button } from '@mui/material'
 import { motion } from 'framer-motion'
@@ -7,9 +7,10 @@ import HeroSection from '../components/home/HeroSection'
 import InspiringSpacesSection from '../components/home/InspiringSpacesSection'
 import StatsSection from '../components/home/StatsSection'
 import OurFieldsSection from '../components/home/OurFieldsSection'
-import AboutProjectsSection from '../components/home/AboutProjectsSection'
 import RegisterInterestModal from '../components/home/RegisterInterestModal'
 import { HomePageContentProvider, useHomePageContent } from '../contexts/HomePageContentContext'
+
+const AboutProjectsSection = lazy(() => import('../components/home/AboutProjectsSection'))
 
 function HomePageContent() {
   const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false)
@@ -27,7 +28,9 @@ function HomePageContent() {
       <InspiringSpacesSection />
       <StatsSection />
       <OurFieldsSection />
-      <AboutProjectsSection />
+      <Suspense fallback={null}>
+        <AboutProjectsSection />
+      </Suspense>
 
       {/* Housing & Development Bank affiliation */}
       <Box sx={{ py: 6, px: { xs: 2, md: 3 }, bgcolor: 'background.paper', textAlign: 'center' }}>

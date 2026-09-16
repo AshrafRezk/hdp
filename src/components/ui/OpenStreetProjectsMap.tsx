@@ -6,6 +6,7 @@ import 'leaflet/dist/leaflet.css'
 import { Box, Paper, Typography } from '@mui/material'
 import { MapPin } from 'lucide-react'
 import CloudastickMapFootnote from '../map/CloudastickMapFootnote'
+import { OSM_TILE_URL } from '../../lib/osmTiles'
 
 const defaultMarkerIcon = L.icon({
   iconRetinaUrl: new URL('leaflet/dist/images/marker-icon-2x.png', import.meta.url).toString(),
@@ -86,7 +87,7 @@ export default function OpenStreetProjectsMap({
   return (
     <Box className="projects-map-monochrome" sx={{ position: 'relative', width: '100%', height, borderRadius: 2, overflow: 'hidden', border: 1, borderColor: 'divider' }}>
       <MapContainer center={[center.lat, center.lng]} zoom={11} style={{ width: '100%', height: '100%', background: '#e8e8e8' }} scrollWheelZoom attributionControl={false}>
-        <TileLayer attribution="" url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+        <TileLayer attribution="" url={OSM_TILE_URL} />
         {!selected && <FitBounds bounds={bounds} />}
         <FocusSelection selected={selected} />
         {locations.map((l) => (

@@ -5,6 +5,20 @@ function isFresh(timestamp: number) {
   return Number.isFinite(timestamp) && Date.now() - timestamp < FEATURE_SWITCH_TTL_MS;
 }
 
+/** Sync read so the app can paint without waiting on Salesforce. */
+export function readCachedFeatureValues(): Record<string, boolean> | null {
+  try {
+    const cachedRaw = localStorage.getItem(FEATURE_SWITCH_CACHE_KEY);
+    if (!cachedRaw) return null;
+    const cached = JSON.parse(cachedRaw);
+    const values = cached?.payload?.data?.values;
+    if (!values || typeof values !== "object") return null;
+    return values as Record<string, boolean>;
+  } catch {
+    return null;
+  }
+}
+
 async function fetchFeatureSwitches() {
   const url = `/api/website-feature-switch`;
   const response = await fetch(url, {

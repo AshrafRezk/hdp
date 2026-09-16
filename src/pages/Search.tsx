@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, lazy, Suspense } from 'react'
 import { useSearchParams, useNavigate } from 'react-router-dom'
 import {
   Box,
@@ -24,7 +24,8 @@ import SearchAutocomplete from '../components/search/SearchAutocomplete'
 import { useAppStore } from '../lib/store'
 import { getProjects, searchUnits } from '../lib/api-client'
 import { Project, Unit } from '../lib/types'
-import ProjectsMap from '../components/home/ProjectsMap'
+
+const ProjectsMap = lazy(() => import('../components/home/ProjectsMap'))
 
 const PROJECTS_PAGE_SIZE = 4
 
@@ -371,11 +372,13 @@ export default function Search() {
             </Grid>
             <Grid size={{ xs: 12, md: 8 }}>
               <Box sx={{ width: '100%', height: { xs: 360, sm: 480, md: 600 } }}>
-                <ProjectsMap
-                  projects={mapProjects}
-                  highlightedProjectId={filters.projectId || null}
-                  onProjectSelect={(id) => id && handleProjectClick(id)}
-                />
+                <Suspense fallback={<Box sx={{ width: '100%', height: '100%', bgcolor: '#e8e8e8', borderRadius: 3 }} />}>
+                  <ProjectsMap
+                    projects={mapProjects}
+                    highlightedProjectId={filters.projectId || null}
+                    onProjectSelect={(id) => id && handleProjectClick(id)}
+                  />
+                </Suspense>
               </Box>
             </Grid>
           </Grid>

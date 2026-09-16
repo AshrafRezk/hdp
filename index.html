@@ -71,15 +71,48 @@
       ]
     }
     </script>
+    <link rel="preload" href="/hdp-logo.svg" as="image" />
     <link rel="preload" href="/fonts/english/PPTelegraf-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
     <link rel="preload" href="/fonts/english/PPTelegraf-Medium.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
     <link rel="preload" href="/fonts/arabic/PPNeueMontrealArabic-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
     <link rel="preload" href="/fonts/arabic/PPNeueMontrealArabic-Medium.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
     <link rel="preload" href="/fonts/arabic/PPNeueMontrealArabic-Bold.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
     <title>HDP | Housing and Development Properties</title>
+    <style>
+      html, body { margin: 0; background: #0c0c0c; }
+      #hdp-boot-splash {
+        position: fixed;
+        inset: 0;
+        z-index: 2147483647;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #0c0c0c;
+        transition: opacity 0.42s ease;
+      }
+      #hdp-boot-splash.is-done { opacity: 0; pointer-events: none; }
+      #hdp-boot-splash img {
+        width: min(46vw, 240px);
+        height: auto;
+        animation: hdp-logo-in 0.65s ease both;
+      }
+      @keyframes hdp-logo-in {
+        from { opacity: 0; transform: scale(0.9); }
+        to { opacity: 1; transform: scale(1); }
+      }
+    </style>
   </head>
   <body>
+    <div id="hdp-boot-splash" aria-hidden="true">
+      <img src="/hdp-logo.svg" alt="HDP" />
+    </div>
     <div id="root"></div>
+    <script>
+      setTimeout(function () {
+        var el = document.getElementById('hdp-boot-splash');
+        if (el) el.classList.add('is-done');
+      }, 8000);
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

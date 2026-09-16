@@ -13,6 +13,7 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
+      injectRegister: false,
       includeAssets: [
         'favicon.ico',
         'favicon.svg',
@@ -57,6 +58,10 @@ export default defineConfig({
         dir: 'ltr'
       },
       workbox: {
+        skipWaiting: true,
+        clientsClaim: true,
+        cleanupOutdatedCaches: true,
+        cacheId: 'hdp-pwa-v4',
         // Large hero video / marketing imagery should stream, not precache
         globPatterns: ['**/*.{js,css,html,ico,svg,woff2}'],
         globIgnores: ['**/videos/**', '**/hdp-live/**'],

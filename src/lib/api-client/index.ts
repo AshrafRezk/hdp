@@ -609,7 +609,7 @@ export async function getProjects(options?: {
   const isPaginated = !forMap && typeof page === 'number' && page > 0
 
   const CACHE_KEY = forMap
-    ? `hdp_projects_map_v2_${projectType?.toLowerCase() || 'all'}`
+    ? `hdp_projects_map_v3_${projectType?.toLowerCase() || 'all'}`
     : isPaginated
       ? `binsaedan_projects_cache_v9_${projectType?.toLowerCase() || 'all'}_p${page}_s${pageSize}`
       : projectType
@@ -693,14 +693,25 @@ export async function getProjects(options?: {
     }
 
     const projectIds = sfProjects.map((p) => p.Id)
-    const [mediaByProjectId, availableUnitsByProjectId, unitTopPlansByProjectId] = await Promise.all([
-      getProjectsMedia(projectIds),
-      getAvailableUnitsCountsForProjects(projectIds).catch((error) => {
-        console.warn('[Projects] Live unit counts failed, using rollup fallback:', error)
-        return new Map<string, number>()
-      }),
-      getTopPlanUrlsFromUnitLocationFiles(projectIds),
-    ])
+    let mediaByProjectId: Awaited<ReturnType<typeof getProjectsMedia>> = new Map()
+    let availableUnitsByProjectId = new Map<string, number>()
+    let unitTopPlansByProjectId = new Map<string, string>()
+
+    if (forMap) {
+      mediaByProjectId = await getProjectsMedia(projectIds).catch((error) => {
+        console.warn('[Projects] Map media failed:', error)
+        return new Map()
+      })
+    } else {
+      ;[mediaByProjectId, availableUnitsByProjectId, unitTopPlansByProjectId] = await Promise.all([
+        getProjectsMedia(projectIds),
+        getAvailableUnitsCountsForProjects(projectIds).catch((error) => {
+          console.warn('[Projects] Live unit counts failed, using rollup fallback:', error)
+          return new Map<string, number>()
+        }),
+        getTopPlanUrlsFromUnitLocationFiles(projectIds),
+      ])
+    }
 
     // Transform to application format
     const mappedProjects = sfProjects.map((p) => {

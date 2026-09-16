@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, lazy, Suspense, useState } from 'react'
 import { Box, Container, Typography, Card, Chip, Grid, Skeleton } from '@mui/material'
 import { motion } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
@@ -8,8 +8,9 @@ import { MapPin } from 'lucide-react'
 import { getProjects } from '../../lib/api-client'
 import type { Project } from '../../lib/types'
 import LazyImage from '../ui/LazyImage'
-import ProjectsMap from './ProjectsMap'
 import { projectHasMapGeometry } from '../../lib/projectMap'
+
+const ProjectsMap = lazy(() => import('./ProjectsMap'))
 
 interface ProjectWithAvailability extends Project {
   hasAvailability: boolean
@@ -224,12 +225,14 @@ export default function AboutProjectsSection() {
               {isRtl ? 'خريطة' : 'Map'}
             </Typography>
             <Box sx={{ width: '100%', height: MAP_HEIGHT }}>
-              <ProjectsMap
-                sx={{ width: '100%', height: '100%' }}
-                projects={projects}
-                highlightedProjectId={highlightedProjectId}
-                onProjectSelect={(id) => setHighlightedProjectId(id)}
-              />
+              <Suspense fallback={<Box sx={{ width: '100%', height: '100%', bgcolor: '#e8e8e8', borderRadius: 3 }} />}>
+                <ProjectsMap
+                  sx={{ width: '100%', height: '100%' }}
+                  projects={projects}
+                  highlightedProjectId={highlightedProjectId}
+                  onProjectSelect={(id) => setHighlightedProjectId(id)}
+                />
+              </Suspense>
             </Box>
           </Grid>
 
