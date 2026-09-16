@@ -79,7 +79,7 @@ export const useChatStore = create<ChatState>((set, get) => ({
     { value: 'services', labelKey: 'chatbot.menu.services' },
     { value: 'contact', labelKey: 'chatbot.menu.contact' }
   ],
-  leadData: { name: '', country: '+966', phone: '', region: '', city: '', customerType: '', selectedUnit: '' },
+  leadData: { name: '', country: '+20', phone: '', region: '', city: '', customerType: '', selectedUnit: '' },
   proposalFilters: { location: '', budget: '', bedrooms: '' },
 
   toggleChat: () => set(state => ({ isOpen: !state.isOpen })),
@@ -129,8 +129,8 @@ export const useChatStore = create<ChatState>((set, get) => ({
           currentStep: 'PROPOSAL_LOCATION',
           inputType: 'options',
           options: [
-            { value: 'Riyadh', labelKey: 'chatbot.location.riyadh' },
-            { value: 'KAEC', labelKey: 'chatbot.location.kaec' },
+            { value: 'New Cairo', labelKey: 'chatbot.location.newCairo' },
+            { value: 'Sheikh Zayed', labelKey: 'chatbot.location.sheikhZayed' },
             { value: 'any', labelKey: 'chatbot.location.any' }
           ]
         })
@@ -186,11 +186,12 @@ export const useChatStore = create<ChatState>((set, get) => ({
         if (filters.location !== 'any') {
           const project = mockProjects.find(p => p.id === unit.projectId)
           if (!project) return false
-          const isRiyadh = project.location.toLowerCase().includes('riyadh')
-          const isKaec = project.location.toLowerCase().includes('economic') || project.location.toLowerCase().includes('kaec')
-          
-          if (filters.location === 'Riyadh' && !isRiyadh) return false
-          if (filters.location === 'KAEC' && !isKaec) return false
+          const loc = project.location.toLowerCase()
+          const isEast = /cairo|mostakbal|talda|sq1|gray/.test(loc)
+          const isWest = /zayed|october|westview|club hills|terrace/.test(loc)
+
+          if (filters.location === 'New Cairo' && !isEast) return false
+          if (filters.location === 'Sheikh Zayed' && !isWest) return false
         }
         
         // Budget matching
@@ -317,7 +318,7 @@ export const useChatStore = create<ChatState>((set, get) => ({
       { value: 'services', labelKey: 'chatbot.menu.services' },
       { value: 'contact', labelKey: 'chatbot.menu.contact' }
     ],
-    leadData: { name: '', country: '+966', phone: '', region: '', city: '', customerType: '', selectedUnit: '' },
+    leadData: { name: '', country: '+20', phone: '', region: '', city: '', customerType: '', selectedUnit: '' },
     proposalFilters: { location: '', budget: '', bedrooms: '' }
   })
 }))

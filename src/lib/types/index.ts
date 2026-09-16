@@ -143,6 +143,8 @@ export interface Unit {
   unitImage?: string;
   projectHeroImage?: string;
   floorPlan?: string;
+  /** Unit attachment titled "Location in Project" — master plan pin for this unit */
+  locationInProject?: string;
   sketchupEmbedUrl?: string;
   amenities?: string[];
   description?: string;

@@ -4,17 +4,13 @@ import { Download } from '@mui/icons-material'
 import { useTranslation } from 'react-i18next'
 import { useAppStore } from '../../lib/store'
 
-interface BeforeInstallPromptEvent extends Event {
-  prompt: () => Promise<void>
-  userChoice: Promise<{ outcome: 'accepted' | 'dismissed' }>
-}
-
 export default function InstallBanner() {
   const { t } = useTranslation()
   const { installPromptEvent, setInstallPrompt } = useAppStore()
-  const [isInstalled, setIsInstalled] = useState(() => 
-    typeof window !== 'undefined' && window.matchMedia('(display-mode: standalone)').matches
+  const [isInstalled, setIsInstalled] = useState(
+    () => typeof window !== 'undefined' && window.matchMedia('(display-mode: standalone)').matches
   )
+  const [dismissed, setDismissed] = useState(false)
 
   useEffect(() => {
     if (isInstalled) return
@@ -25,37 +21,31 @@ export default function InstallBanner() {
     }
 
     window.addEventListener('appinstalled', handleAppInstalled)
-
-    return () => {
-      window.removeEventListener('appinstalled', handleAppInstalled)
-    }
+    return () => window.removeEventListener('appinstalled', handleAppInstalled)
   }, [isInstalled, setInstallPrompt])
 
   const handleInstall = async () => {
     if (!installPromptEvent) return
-
     await installPromptEvent.prompt()
     const { outcome } = await installPromptEvent.userChoice
-
-    if (outcome === 'accepted') {
-      setIsInstalled(true)
-    }
+    if (outcome === 'accepted') setIsInstalled(true)
     setInstallPrompt(null)
   }
 
-  if (isInstalled) {
-    return null
-  }
+  // Only show when the browser actually offers install — never as a permanent FBS ad
+  if (isInstalled || dismissed || !installPromptEvent) return null
 
   return (
     <Snackbar
-      open={true}
+      open
       anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-      sx={{ bottom: { xs: '80px', md: '20px' } }}
+      sx={{ bottom: { xs: '20px', md: '20px' } }}
+      onClose={() => setDismissed(true)}
     >
       <Alert
         severity="info"
         icon={false}
+        onClose={() => setDismissed(true)}
         action={
           <Button
             color="inherit"
@@ -63,24 +53,23 @@ export default function InstallBanner() {
             onClick={handleInstall}
             startIcon={<Download />}
             sx={{
-              color: 'white',
-              fontWeight: 500,
+              color: 'background.default',
+              fontWeight: 600,
               textTransform: 'none',
               borderRadius: '6px',
               px: 1.5,
-              '&:hover': {
-                bgcolor: 'rgba(255, 255, 255, 0.1)',
-              },
+              bgcolor: 'rgba(255,255,255,0.15)',
+              '&:hover': { bgcolor: 'rgba(255, 255, 255, 0.25)' },
             }}
           >
             {t('installBanner.install')}
           </Button>
         }
         sx={{
-          bgcolor: 'primary.main',
-          color: 'white',
+          bgcolor: 'secondary.main',
+          color: 'background.default',
           borderRadius: '12px',
-          boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
+          boxShadow: '0 4px 12px rgba(0, 0, 0, 0.25)',
           minWidth: { xs: 'auto', sm: '400px' },
           maxWidth: { xs: 'calc(100vw - 32px)', sm: '500px' },
           '& .MuiAlert-message': {
@@ -89,16 +78,19 @@ export default function InstallBanner() {
             alignItems: 'flex-start',
             gap: 2,
           },
+          '& .MuiAlert-action .MuiIconButton-root': {
+            color: 'background.default',
+          },
         }}
       >
         <Avatar
           src="/appicon.png"
-          alt="Bin Saedan App Icon"
+          alt="HDP"
+          variant="square"
           sx={{
             width: 48,
             height: 48,
-            borderRadius: '10px',
-            border: '2px solid rgba(255, 255, 255, 0.2)',
+            borderRadius: '8px',
             flexShrink: 0,
           }}
         />
@@ -114,4 +106,3 @@ export default function InstallBanner() {
     </Snackbar>
   )
 }
-

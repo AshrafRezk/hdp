@@ -96,7 +96,7 @@ export default function News() {
       <Box key={article.id} component="article" sx={{ mb: 6 }}>
         <Box
           component={Link}
-          to={`/news/${article.id}`}
+          to={`/media-center/${article.id}`}
           sx={{
             display: 'block',
             overflow: 'hidden',
@@ -145,7 +145,7 @@ export default function News() {
 
         <Typography
           component={Link}
-          to={`/news/${article.id}`}
+          to={`/media-center/${article.id}`}
           variant="h4"
           sx={{
             display: 'block',
@@ -182,7 +182,7 @@ export default function News() {
 
         <Box
           component={Link}
-          to={`/news/${article.id}`}
+          to={`/media-center/${article.id}`}
           sx={{
             display: 'inline-flex',
             alignItems: 'center',
@@ -209,10 +209,10 @@ export default function News() {
         {/* Header */}
         <Box sx={{ mb: 6, textAlign: align }}>
           <Typography variant="h3" component="h1" sx={{ fontWeight: 700, mb: 1 }}>
-            {t('news.blogTitle', 'Blog')}
+            {t('news.blogTitle', 'Media Center')}
           </Typography>
           <Typography variant="h6" sx={{ color: 'text.secondary', fontWeight: 400 }}>
-            {t('news.blogSubtitle', 'Insights, market updates, and stories from Faisal Bin Saedan.')}
+            {t('news.blogSubtitle', 'News, events, and updates from Housing and Development Properties.')}
           </Typography>
         </Box>
 
@@ -328,7 +328,7 @@ export default function News() {
                       <Box
                         key={article.id}
                         component={Link}
-                        to={`/news/${article.id}`}
+                        to={`/media-center/${article.id}`}
                         sx={{
                           display: 'flex',
                           gap: 1.5,

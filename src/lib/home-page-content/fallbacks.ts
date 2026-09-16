@@ -1,70 +1,76 @@
 import type { HomePageContent } from './types'
 
-/** Default homepage content when Salesforce has no matching PWA_Content__c record. */
+/** Default homepage content — aligned with live hdp.com.eg marketing copy + local assets. */
 export const HOME_PAGE_FALLBACKS: HomePageContent = {
   hero: {
-    titleLine1: { en: 'Shaping the Future', ar: 'نشكل مستقبل' },
-    titleLine2: { en: 'of Real Estate', ar: 'العقار' },
+    titleLine1: { en: 'Housing and Development', ar: 'الإسكان والتطوير' },
+    titleLine2: { en: 'Properties', ar: 'العقاري' },
     description: {
-      en: 'We design and deliver developments that shape cities, support national progress, and create long-lasting value.',
-      ar: 'نصمم وننفذ مشاريع تشكل المدن، وتدعم التقدم الوطني، وتخلق قيمة تدوم طويلاً.',
+      en: 'Spaces that inspire and comfort you',
+      ar: 'مساحات تلهمك وتليق براحتك',
     },
-    video: null,
-    fallbackVideoUrl: '/herosectionfallback.mp4',
+    video: {
+      projectId: 'hdp-home',
+      projectName: 'HDP',
+      projectNameAr: 'HDP',
+      videoUrl: '/videos/banner.mp4',
+      coverImageUrl: '/hdp-live/sec_img.jpg',
+      aspectRatio: 16 / 9,
+    },
+    fallbackVideoUrl: '/videos/banner.mp4',
   },
   inspiringSpaces: {
-    title: { en: 'Inspiring Spaces, Building Futures', ar: 'مساحات ملهمة، تبني المستقبل' },
+    title: { en: 'Who Are We', ar: 'من نحن' },
     description: {
-      en: 'Through structure, discipline, and strategic foresight, we transform potential into enduring, measurable value, supporting national progress and sustainable growth.',
-      ar: 'من خلال التخطيط المنظم والرؤية الاستراتيجية الثاقبة، نحول الإمكانات إلى قيمة حقيقية ومستدامة، لندعم مسيرة التقدم الوطني والنمو المستمر.',
+      en: 'Driven by an ever-evolving spirit, HDP Properties has become a leading Egyptian developer, known for its innovation and excellence.',
+      ar: 'بروح متجددة باستمرار، أصبحت HDP Properties مطوراً مصرياً رائداً يُعرف بالابتكار والتميز.',
     },
-    imageUrl:
-      'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=2075&auto=format&fit=crop',
+    imageUrl: '/hdp-live/sec_img.jpg',
   },
   stats: {
-    title: { en: 'Strong foundation and advanced innovations', ar: 'أساس متين وابتكارات متقدمة' },
+    title: { en: 'A legacy of pride', ar: 'إرث من الفخر' },
     description: {
-      en: 'At Faisal Bin Saedan, we strive to implement modern architectural styles and inspiring innovations with a strong foundation.',
-      ar: 'نسعى في فيصل بن سعيدان إلى تطبيق أحدث الأساليب المعمارية والابتكارات الملهمة مستندين إلى أساس متين من الخبرة والجودة.',
+      en: 'HDP leverages the Housing and Development Bank’s four decades legacy, acting as its real estate investment and development arm.',
+      ar: 'تستند HDP إلى إرث بنك الإسكان والتعمير الممتد لأربعة عقود، وتعمل كذراع استثمار وتطوير عقاري له.',
     },
     staticStats: [
       {
-        id: 'drivethrough',
-        value: 32,
+        id: 'projects',
+        value: 10,
         suffix: '+',
-        label: { en: 'Drive Through', ar: 'درايف ثرو' },
+        label: { en: 'Developments', ar: 'مشاريع' },
       },
       {
-        id: 'plaza',
-        value: 11,
+        id: 'years',
+        value: 4,
         suffix: '+',
-        label: { en: 'Plaza', ar: 'مجمعات بلازا' },
+        label: { en: 'Years of Excellence', ar: 'سنوات من التميز' },
       },
     ],
   },
   ourFields: {
-    title: { en: 'Our Fields', ar: 'مجالاتنا' },
-    readMoreLabel: { en: 'Read More →', ar: 'اقرأ المزيد ←' },
+    title: { en: 'Our Developments', ar: 'مشاريعنا' },
+    readMoreLabel: { en: 'Explore →', ar: 'استكشف ←' },
     cards: [
       {
         id: 'residential',
-        imageUrl: '/projects/malfa/hero.jpg',
-        title: { en: 'Residential', ar: 'سكني' },
+        imageUrl: '/hdp-live/east.jpg',
+        title: { en: 'East Cairo', ar: 'شرق القاهرة' },
         description: {
-          en: 'Faisal bin Saedan residential projects provide inspiring havens with sustainable environmental designs that meet all your basic and luxury needs, from internal protection and living services to stunning views, as they are designed to suit your distinctive lifestyle.',
-          ar: 'توفر مشاريع فيصل بن سعيدان السكنية ملاذات ملهمة بتصاميم بيئية مستدامة تلبي جميع احتياجاتك الأساسية والفاخرة، صُممت لتناسب أسلوب حياتك المميز.',
+          en: 'Flagship communities across New Cairo and Mostakbal City — Talda, SQ1, The Gray, Grand Lane, and more.',
+          ar: 'مجتمعات رائدة في القاهرة الجديدة ومدينة المستقبل — تالدا وSQ1 وذا جراي وجراند لين والمزيد.',
         },
-        link: '/search?view=projects',
+        link: '/projects',
       },
       {
         id: 'commercial',
-        imageUrl: 'https://faisal-binsaedan.com/wp-content/uploads/2024/07/manar-1.webp',
-        title: { en: 'Commercial', ar: 'تجاري' },
+        imageUrl: '/hdp-live/west.jpg',
+        title: { en: 'West Cairo', ar: 'غرب القاهرة' },
         description: {
-          en: 'Our carefully selected commercial buildings inspire you to pursue your entrepreneurial dreams, as we provide the ideal starting point for whatever your business growth may be, from retail and entertainment venues to modern office space.',
-          ar: 'تلهمك مبانينا التجارية المختارة بعناية لتحقيق أحلامك الريادية، حيث نوفر نقطة الانطلاق المثالية لنمو أعمالك، من مساحات التجزئة والترفيه إلى المساحات المكتبية الحديثة.',
+          en: 'Landmark living in Sheikh Zayed and 6th of October — Terrace, Westview Residence, Club Hills, and Terrace Plaza.',
+          ar: 'حياة مميزة في الشيخ زايد و6 أكتوبر — تراس وويست فيو وكلوب هيلز وتراس بلازا.',
         },
-        link: '/search?view=projects',
+        link: '/projects',
       },
     ],
   },
@@ -72,24 +78,24 @@ export const HOME_PAGE_FALLBACKS: HomePageContent = {
     title: { en: 'About\nOur Projects', ar: 'عن مشاريعنا' },
   },
   cma: {
-    imageUrl: '/Capital-Market-Authority-01.png',
+    imageUrl: '/hdp-live/hdb-light.png',
     description: {
-      en: 'Faisal bin Saedan Investment and Real Estate Development Company operates in accordance with approved regulatory frameworks and in coordination with the Saudi Capital Market Authority to develop and manage investment opportunities. This includes structuring and launching real estate funds in line with the highest standards of governance and compliance, thereby enhancing transparency and safeguarding investors’ interests.',
-      ar: 'تعمل شركة فيصل بن سعيدان للاستثمار والتطوير العقاري وفق أطر تنظيمية معتمدة وبالتنسيق مع هيئة السوق المالية السعودية، لتطوير وإدارة الفرص الاستثمارية، بما يشمل هيكلة وإطلاق الصناديق العقارية وفق أعلى معايير الحوكمة والامتثال، بما يعزز الشفافية ويحمي مصالح المستثمرين',
+      en: 'HDP is the real estate investment and development arm of the Housing and Development Bank, delivering bespoke residential and mixed-use offerings in prime Egyptian locations.',
+      ar: 'HDP هي ذراع الاستثمار والتطوير العقاري لبنك الإسكان والتعمير، وتقدم عروضاً سكنية ومتعددة الاستخدامات في مواقع مميزة بمصر.',
     },
     teaser: {
-      en: 'Additional collaboration initiatives with the Saudi Capital Market Authority are coming soon.',
-      ar: 'مبادرات تعاون إضافية مع هيئة السوق المالية — قريباً',
+      en: 'We believe in creating spaces that inspire and communities that thrive.',
+      ar: 'نؤمن بصناعة مساحات تلهم ومجتمعات تزدهر.',
     },
-    ctaLabel: { en: 'View details', ar: 'عرض التفاصيل' },
-    ctaLink: '/collaboration-coming-soon',
+    ctaLabel: { en: 'Who Are We', ar: 'من نحن' },
+    ctaLink: '/about',
   },
   cta: {
-    title: { en: 'Looking for Your Dream Home?', ar: 'هل تبحث عن منزل أحلامك؟' },
+    title: { en: 'We are pleased to hear from you', ar: 'يسعدنا تواصلكم معنا' },
     description: {
-      en: 'Register your interest now and our team will contact you to help you choose the right unit',
-      ar: 'سجل اهتمامك الآن وسيتواصل معك فريقنا لمساعدتك في اختيار الوحدة المناسبة',
+      en: 'Register your interest and our team will help you find the right home or investment.',
+      ar: 'سجّل اهتمامك وسيساعدك فريقنا في اختيار المنزل أو الاستثمار المناسب.',
     },
-    buttonLabel: { en: 'Register Your Interest', ar: 'سجل اهتمامك الآن' },
+    buttonLabel: { en: 'Enquire Now', ar: 'استفسر الآن' },
   },
 }

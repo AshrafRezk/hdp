@@ -16,7 +16,7 @@ import {
 } from '@mui/material'
 import { X } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
-import SARBlack from '../../SAR/SAR_Black.png'
+import { CURRENCY_CODE } from '../../lib/currency'
 
 // ─── Exported icon used by other pages ────────────────────────────────────────
 export const SakaniMathIcon = ({ color = 'currentColor', size = 24 }: { color?: string; size?: number }) => (
@@ -29,13 +29,19 @@ export const SakaniMathIcon = ({ color = 'currentColor', size = 24 }: { color?: 
   </svg>
 )
 
-// ─── SAR brand icon ───────────────────────────────────────────────────────────
-const SarIcon = ({ size = '1em' }: { size?: string | number }) => (
-  <img
-    src={SARBlack}
-    alt="SAR"
-    style={{ display: 'inline-block', verticalAlign: 'middle', height: size, width: 'auto', flexShrink: 0 }}
-  />
+const CurrencyMark = ({ size = '1em' }: { size?: string | number }) => (
+  <span
+    style={{
+      display: 'inline-block',
+      verticalAlign: 'middle',
+      fontWeight: 600,
+      fontSize: size,
+      letterSpacing: '0.02em',
+      flexShrink: 0,
+    }}
+  >
+    {CURRENCY_CODE}
+  </span>
 )
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -278,18 +284,18 @@ export default function FinanceCalculatorModal({
     durationUntil: isRtl ? 'حتى ' : 'Until ',
     years: isRtl ? 'سنة' : 'years',
     exemptNotice: isRtl
-      ? '🎉 تهانينا! مسكنك الأول معفى بالكامل من ضريبة التصرفات العقارية (5٪) لخصائص أقل من 1,000,000 ريال.'
-      : '🎉 Congratulations! Your first home is fully exempt from the 5% Real Estate Transaction Tax for properties under 1,000,000 SAR.',
+      ? '🎉 تهانينا! مسكنك الأول معفى بالكامل من ضريبة التصرفات العقارية (5٪) لخصائص أقل من 1,000,000 جنيه.'
+      : '🎉 Congratulations! Your first home is fully exempt from the 5% Real Estate Transaction Tax for properties under 1,000,000 EGP.',
     subsidyLabel: isRtl ? 'الدعم التمويلي (سكني)' : 'Subsidized Amount (Sakani)',
   }
 
   // ── Adornment helpers ────────────────────────────────────────────────────────
-  // In RTL the SAR icon should be on the RIGHT side (= startAdornment in MUI RTL)
+  // In RTL the currency mark should be on the RIGHT side (= startAdornment in MUI RTL)
   const sarAdornmentKey = isRtl ? 'startAdornment' : 'endAdornment'
   const sarAdornment = {
     [sarAdornmentKey]: (
       <Box sx={{ display: 'flex', alignItems: 'center', px: 0.25 }}>
-        <SarIcon size="1em" />
+        <CurrencyMark size="1em" />
       </Box>
     ),
   }
@@ -604,7 +610,7 @@ export default function FinanceCalculatorModal({
                     direction: 'ltr', // keep number LTR
                   }}
                 >
-                  <SarIcon size="1.5rem" />
+                  <CurrencyMark size="1.5rem" />
                   <Typography variant="h4" fontWeight="900" color="text.primary" sx={{ lineHeight: 1 }}>
                     {results.monthlyInstallment}
                   </Typography>
@@ -653,7 +659,7 @@ export default function FinanceCalculatorModal({
                 {/* Total financing */}
                 <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                   <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.75 }}>
-                    <SarIcon size="0.85em" />
+                    <CurrencyMark size="0.85em" />
                     <Typography variant="body2" fontWeight="700">
                       {results.totalFinancing}
                     </Typography>
@@ -668,7 +674,7 @@ export default function FinanceCalculatorModal({
                 {/* Total interest */}
                 <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                   <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.75 }}>
-                    <SarIcon size="0.85em" />
+                    <CurrencyMark size="0.85em" />
                     <Typography variant="body2" fontWeight="700">
                       {results.totalInterest}
                     </Typography>
@@ -713,7 +719,7 @@ export default function FinanceCalculatorModal({
                       ? new Intl.NumberFormat(isRtl ? 'ar-SA' : 'en-US').format(parseFloat(monthlyIncome))
                       : '0'
                   }
-                  icon={<SarIcon size="0.85em" />}
+                  icon={<CurrencyMark size="0.85em" />}
                 />
                 <DetailRow
                   label={L.bankObligationsLabel}
@@ -722,7 +728,7 @@ export default function FinanceCalculatorModal({
                       ? new Intl.NumberFormat(isRtl ? 'ar-SA' : 'en-US').format(parseFloat(obligations))
                       : '0'
                   }
-                  icon={<SarIcon size="0.85em" />}
+                  icon={<CurrencyMark size="0.85em" />}
                 />
                 <DetailRow label={L.interestRateLabel} value={`%${interestRate}`} />
                 <DetailRow label={L.downPaymentPctLabel} value={`%${downPayment}`} />
@@ -734,7 +740,7 @@ export default function FinanceCalculatorModal({
                   <DetailRow
                     label={L.subsidyLabel}
                     value={`- ${results.subsidyAmount}`}
-                    icon={<SarIcon size="0.85em" />}
+                    icon={<CurrencyMark size="0.85em" />}
                   />
                 )}
               </Stack>

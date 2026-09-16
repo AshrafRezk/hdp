@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Box, Container, Typography, Card, Chip, Grid, Skeleton } from '@mui/material'
 import { motion } from 'framer-motion'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useHomePageContent } from '../../contexts/HomePageContentContext'
 import { MapPin } from 'lucide-react'
@@ -9,13 +9,13 @@ import { getProjects } from '../../lib/api-client'
 import type { Project } from '../../lib/types'
 import LazyImage from '../ui/LazyImage'
 import ProjectsMap from './ProjectsMap'
+import { projectHasMapGeometry } from '../../lib/projectMap'
 
 interface ProjectWithAvailability extends Project {
   hasAvailability: boolean
   availablePhasesCount?: number
 }
 
-const MAX_GRID_PROJECTS = 6
 const MAP_HEIGHT = { xs: 360, sm: 420, md: 560 }
 
 export default function AboutProjectsSection() {
@@ -29,12 +29,14 @@ export default function AboutProjectsSection() {
   useEffect(() => {
     async function loadProjects() {
       try {
-        const response = await getProjects()
+        const response = await getProjects({ forMap: true })
         if (response.success && response.data) {
           setProjects(
-            [...response.data].sort(
-              (a, b) => (b.availablePhasesCount ?? 0) - (a.availablePhasesCount ?? 0)
-            )
+            [...response.data]
+              .filter(projectHasMapGeometry)
+              .sort(
+                (a, b) => (b.availablePhasesCount ?? 0) - (a.availablePhasesCount ?? 0)
+              )
           )
         }
       } catch (error) {
@@ -47,7 +49,7 @@ export default function AboutProjectsSection() {
   }, [])
 
   const isRtl = i18n.language === 'ar'
-  const gridProjects = projects.slice(0, MAX_GRID_PROJECTS)
+  const gridProjects = projects
 
   const renderProjectCard = (project: ProjectWithAvailability, index: number) => {
     const isActive = highlightedProjectId === project.id
@@ -123,8 +125,7 @@ export default function AboutProjectsSection() {
                   sx={{
                     height: 22,
                     fontSize: '0.65rem',
-                    backdropFilter: 'blur(4px)',
-                    bgcolor: project.hasAvailability ? 'rgba(46, 125, 50, 0.85)' : 'rgba(211, 47, 47, 0.85)',
+                    bgcolor: project.hasAvailability ? 'rgba(46, 125, 50, 0.9)' : 'rgba(211, 47, 47, 0.9)',
                     '& .MuiChip-label': { px: 1 },
                   }}
                 />
@@ -225,6 +226,7 @@ export default function AboutProjectsSection() {
             <Box sx={{ width: '100%', height: MAP_HEIGHT }}>
               <ProjectsMap
                 sx={{ width: '100%', height: '100%' }}
+                projects={projects}
                 highlightedProjectId={highlightedProjectId}
                 onProjectSelect={(id) => setHighlightedProjectId(id)}
               />
@@ -237,11 +239,13 @@ export default function AboutProjectsSection() {
             sx={{
               order: { xs: 2, md: isRtl ? 1 : 2 },
               minWidth: 0,
+              maxHeight: MAP_HEIGHT,
+              overflowY: 'auto',
             }}
           >
             {isLoading ? (
               <Grid container spacing={2}>
-                {Array.from({ length: MAX_GRID_PROJECTS }).map((_, i) => (
+                {Array.from({ length: 6 }).map((_, i) => (
                   <Grid size={{ xs: 6 }} key={i}>
                     <Card sx={{ borderRadius: 2, overflow: 'hidden' }}>
                       <Skeleton variant="rectangular" height={155} />
@@ -265,7 +269,7 @@ export default function AboutProjectsSection() {
                 }}
               >
                 <Typography color="text.secondary">
-                  {isRtl ? 'لا توجد مشاريع متاحة حالياً' : 'No available projects at the moment'}
+                  {isRtl ? 'لا توجد مشاريع بخريطة حالياً' : 'No mapped projects at the moment'}
                 </Typography>
               </Box>
             ) : (

@@ -13,6 +13,10 @@ export const NAV_LABEL_KEYS = [
   'more',
   'call',
   'commercial',
+  'projects',
+  'mediaCenter',
+  'careers',
+  'ourTeam',
 ] as const
 
 export type NavLabelKey = (typeof NAV_LABEL_KEYS)[number]

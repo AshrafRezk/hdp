@@ -28,10 +28,10 @@ export default function LanguageToggle({ sx, color = 'inherit' }: LanguageToggle
     handleClose()
   }
 
-  const currentLang = i18n.language || 'ar'
+  const currentLang = i18n.language?.startsWith('ar') ? 'ar' : 'en'
   const languages = [
-    { code: 'ar', label: 'العربية' },
     { code: 'en', label: 'English' },
+    { code: 'ar', label: 'العربية' },
   ]
 
   return (

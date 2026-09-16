@@ -2,14 +2,18 @@
   "common": {
     "home": "Home",
     "search": "Search",
-    "aboutUs": "About Us",
+    "aboutUs": "Who Are We",
     "achievements": "Our Achievements",
     "community": "My Community",
     "contact": "Contact Us",
     "support": "Support",
-    "latestReleases": "Latest Releases",
-    "ourNews": "Blogs",
-    "news": "Blogs",
+    "latestReleases": "Projects",
+    "ourNews": "Media Center",
+    "news": "Media Center",
+    "projects": "Projects",
+    "mediaCenter": "Media Center",
+    "careers": "Careers",
+    "ourTeam": "Our Team",
     "login": "Login",
     "logout": "Logout",
     "back": "Back",
@@ -26,10 +30,19 @@
     "call": "Call",
     "commercial": "Commercial & Rental"
   },
+  "nav": {
+    "exploreAbout": "Explore about HDP",
+    "searchPlaceholder": "Search",
+    "moreServices": "More",
+    "darkMode": "Dark",
+    "lightMode": "Light",
+    "openMenu": "Open menu"
+  },
   "footer": {
     "nav": "Footer navigation",
     "copyright": "© {{year}} HDP. All rights reserved.",
-    "developedBy": "Developed with love by"
+    "developedBy": "Developed with love by",
+    "offices": "Offices"
   },
   "siteContactBar": {
     "label": "Contact and social media"
@@ -93,21 +106,24 @@
     }
   },
   "about": {
-    "title": "About Us",
-    "subtitle": "Learn about our board members and our strategic vision and mission.",
-    "companyIntroTitle": "About the Company",
-    "companyIntroBody": "It is a real estate development company that was established to be an active partner in the real estate scene of the Kingdom of Saudi Arabia by implementing exceptional residential and commercial real estate innovations. Since its inception, the company has worked to ensure that its projects are characterized by quality and sustainability to create spaces that meet the desires and goals of individuals and communities.",
+    "title": "Housing and Development Properties",
+    "subtitle": "Driven by an ever-evolving spirit, HDP Properties has become a leading Egyptian developer, known for its innovation and excellence.",
+    "whoAreWe": "Who Are We",
+    "companyIntroTitle": "About HDP",
+    "companyIntroBody": "HDP has been upping the exclusivity factor in the real estate sector since 2022, thanks to a team of young visionaries and breakthrough concepts that cater to contemporary lifestyles. The company leverages the Housing and Development Bank’s four decades legacy, acting as its real estate investment and development arm while making aspirations attainable for varied market segments. HDP specializes in bespoke residential and mixed-use offerings that enrich everyday life and maximize return on investment, thanks to prime locations, second to none.",
     "visionMissionTitle": "Vision & Mission",
-    "boardMembersTitle": "Board Members",
+    "boardMembersTitle": "Our Team",
+    "coreValues": "Our Core Values",
+    "meetTeamTeaser": "Meet the people shaping HDP’s vision.",
     "animatedPanelTitle": "Building Tomorrow",
     "animatedPanelBody": "Our strategy combines design quality, investment discipline, and sustainable urban value."
   },
   "home": {
     "title": "HDP",
-    "subtitle": "Explore our distinguished collection of residential projects in the best locations in the Kingdom",
-    "heroTitle": "Shaping the Future",
-    "heroSubtitle": "of Real Estate",
-    "heroDescription": "We design and deliver developments that shape cities, support national progress, and create long-lasting value.",
+    "subtitle": "Explore our distinguished collection of residential and mixed-use projects across Egypt",
+    "heroTitle": "Housing and Development",
+    "heroSubtitle": "Properties",
+    "heroDescription": "Spaces that inspire and comfort you",
     "exploreProjects": "Explore Projects",
     "scrollDown": "Scroll Down",
     "latestProjects": "Latest Projects",
@@ -124,9 +140,9 @@
     "ctaDescription": "Register your interest now and our team will contact you to help you choose the right unit",
     "registerInterest": "Register Your Interest",
     "viewAllUnits": "View All Units",
-    "phone": "920024010",
-    "email": "customer.care@faisal-binsaedan.com / info@faisal-binsaedan.com",
-    "address": "Riyadh, Kingdom of Saudi Arabia",
+    "phone": "19845",
+    "email": "info@hdp.com.eg",
+    "address": "Egypt",
     "phasesAvailable": "{{count}} units available",
     "soldOut": "Sold Out",
     "phases": "phases",
@@ -172,7 +188,7 @@
     "propertyTypePlaceholder": "Select Property Type",
     "project": "Project",
     "projectPlaceholder": "Select a project",
-    "rentalBudget": "Rental Budget (SAR)",
+    "rentalBudget": "Rental Budget (EGP)",
     "rentalBudgetPlaceholder": "e.g. 50000",
     "numberOfRooms": "Number of Rooms",
     "numberOfRoomsPlaceholder": "e.g. 3",
@@ -190,10 +206,10 @@
       "other": "Other"
     },
     "budgetOptions": {
-      "under100k": "Under 100k SAR",
-      "100kTo500k": "100k - 500k SAR",
-      "500kTo1m": "500k - 1M SAR",
-      "above1m": "Above 1M SAR"
+      "under100k": "Under 100k EGP",
+      "100kTo500k": "100k - 500k EGP",
+      "500kTo1m": "500k - 1M EGP",
+      "above1m": "Above 1M EGP"
     }
   },
   "collaboration": {
@@ -245,11 +261,11 @@
       "fourRooms": "4 Rooms",
       "fivePlusRooms": "5+ Rooms",
       "price": {
-        "opt1": "Less than 1 Million SAR",
-        "opt2": "1 - 2 Million SAR",
-        "opt3": "2 - 3 Million SAR",
-        "opt4": "3 - 5 Million SAR",
-        "opt5": "More than 5 Million SAR"
+        "opt1": "Less than 1 Million EGP",
+        "opt2": "1 - 2 Million EGP",
+        "opt3": "2 - 3 Million EGP",
+        "opt4": "3 - 5 Million EGP",
+        "opt5": "More than 5 Million EGP"
       }
     }
   },
@@ -316,7 +332,7 @@
     "phoneLabel": "Phone",
     "emailLabel": "Email",
     "addressLabel": "Address",
-    "address": "Riyadh, Kingdom of Saudi Arabia",
+    "address": "Egypt — Sheikh Zayed · New Cairo · North Coast",
     "workingHours": "Working Hours",
     "workingHoursValue": "Sunday - Thursday, 9 AM - 5 PM",
     "followUs": "Follow Us",
@@ -479,7 +495,7 @@
   },
   "installBanner": {
     "title": "Better experience with the app",
-    "description": "Install Faisal Bin Saedan app for quick access",
+    "description": "Install the HDP app for quick access",
     "install": "Install"
   },
   "brokerLanding": {
@@ -502,7 +518,7 @@
     },
     "ownershipRights": "Ownership Rights",
     "priceUSD": "$5,000",
-    "priceSAR": "18,750 SAR",
+    "priceEGP": "18,750 EGP",
     "perMonth": "/mo",
     "viewDemo": "View Demo Website",
     "demoDesc": "Experience the full capabilities of the platform",
@@ -564,8 +580,8 @@
     "all": "All",
     "select": "Select",
     "empty": "No news articles found.",
-    "blogTitle": "Blog",
-    "blogSubtitle": "Insights, market updates, and stories from Faisal Bin Saedan.",
+    "blogTitle": "Media Center",
+    "blogSubtitle": "News, events, and updates from Housing and Development Properties.",
     "continueReading": "Continue reading",
     "categories": "Categories",
     "recentPosts": "Recent Posts",
@@ -573,7 +589,7 @@
     "badge": "Blog"
   },
   "chatbot": {
-    "greeting": "Welcome to Faisal Bin Saedan! I'm Sara, your digital assistant. How can I help you today?",
+    "greeting": "Welcome to HDP! I'm Sara, your digital assistant. How can I help you today?",
     "menu": {
       "projects": "Explore Projects & Units",
       "services": "Our Services",
@@ -583,19 +599,21 @@
     },
     "link": {
       "projects": "You can explore our latest residential and commercial communities on our Projects page: /projects",
-      "services": "We offer a range of services from property management to investment solutions. Learn more on our About page: /about-us"
+      "services": "We offer a range of services from property management to investment solutions. Learn more on our About page: /about"
     },
     "findUnitIntro": "I can help you find available units based on your preferences. Let's start! What is your preferred location?",
     "location": {
+      "newCairo": "New Cairo",
+      "sheikhZayed": "Sheikh Zayed",
       "riyadh": "Riyadh",
       "kaec": "KAEC",
       "any": "Any Location"
     },
     "askBudget": "What is your budget range?",
     "budget": {
-      "under_1_5m": "Under 1.5M SAR",
-      "between_1_5m_3m": "1.5M - 3M SAR",
-      "above_3m": "Above 3M SAR",
+      "under_1_5m": "Under 1.5M EGP",
+      "between_1_5m_3m": "1.5M - 3M EGP",
+      "above_3m": "Above 3M EGP",
       "any": "Any Budget"
     },
     "askBedrooms": "How many bedrooms do you need?",

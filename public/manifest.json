@@ -1,29 +1,41 @@
 {
-  "name": "فيصل بن سعيدان | Faisal Bin Saedan Properties",
-  "short_name": "Bin Saedan",
-  "description": "اكتشف أرقى المشاريع العقارية مع مجموعة فيصل بن سعيدان",
+  "name": "HDP | Housing and Development Properties",
+  "short_name": "HDP",
+  "description": "Explore HDP residential and mixed-use developments across Egypt",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#fafafa",
-  "theme_color": "#1a365d",
+  "background_color": "#0c0c0c",
+  "theme_color": "#0c0c0c",
   "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "/FBS%20logo%20acronim.svg",
-      "sizes": "192x192",
+      "src": "/favicon.svg",
+      "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any"
     },
     {
-      "src": "/FBS%20logo%20acronim.svg",
+      "src": "/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-512x512.png",
       "sizes": "512x512",
-      "type": "image/svg+xml",
-      "purpose": "any maskable"
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ],
   "categories": ["business", "lifestyle"],
-  "lang": "ar",
-  "dir": "rtl",
+  "lang": "en",
+  "dir": "ltr",
   "scope": "/",
   "prefer_related_applications": false
 }

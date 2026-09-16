@@ -67,34 +67,30 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --font-sans: 'BentonSans', system-ui, sans-serif;
-  --font-display: 'Cera Pro', system-ui, sans-serif;
+/* Dark-first HDP tokens (default) */
+:root,
+html[data-theme='dark'] {
+  --font-sans: 'PP Telegraf', 'PP Neue Montreal Arabic', system-ui, sans-serif;
+  --font-display: 'PP Telegraf', 'PP Neue Montreal Arabic', system-ui, sans-serif;
 
-  /* HDP Theme tokens */
-  --background: 52 23% 90%; /* #eceae0 */
-  --foreground: 195 9% 9%; /* #141718 */
+  --background: 0 0% 5%; /* #0c0c0c */
+  --foreground: 52 19% 85%; /* #E0DFD1 */
 
-  --card: 0 0% 100%; /* #ffffff */
-  --card-foreground: 195 9% 9%;
+  --card: 0 0% 9%; /* #161616 */
+  --card-foreground: 52 19% 85%;
 
-  --popover: 0 0% 100%;
-  --popover-foreground: 195 9% 9%;
+  --popover: 0 0% 9%;
+  --popover-foreground: 52 19% 85%;
 
   --primary: 48 35% 42%; /* #908146 */
   --primary-foreground: 0 0% 100%;
   --primary-glow: 48 35% 32%;
 
   --secondary: 48 22% 51%; /* #9C9069 */
-  --secondary-foreground: 0 0% 100%;
+  --secondary-foreground: 0 0% 5%;
 
-  --muted: 52 19% 85%; /* #E0DFD1 natural-color */
-  --muted-foreground: 0 0% 21%; /* #353535 */
-
-  --aurora-1: 48 35% 52%;
-  --aurora-2: 48 22% 61%;
-  --aurora-3: 48 22% 51%;
-  --aurora-4: 52 19% 85%;
+  --muted: 0 0% 14%;
+  --muted-foreground: 52 19% 70%;
 
   --accent: 48 35% 42%;
   --accent-foreground: 0 0% 100%;
@@ -105,21 +101,50 @@
   --success: 145 55% 38%;
   --success-foreground: 40 20% 97%;
 
-  --border: 52 19% 85%;
-  --input: 52 19% 85%;
+  --border: 52 19% 85% / 0.12;
+  --input: 52 19% 85% / 0.16;
   --ring: 48 35% 42%;
 
   --radius: 0.5rem;
 
-  --gradient-hero: linear-gradient(180deg, hsl(195 9% 9% / 0.3) 0%, hsl(195 9% 9% / 0.8) 100%);
-  --gradient-navy: linear-gradient(135deg, hsl(195 9% 9%) 0%, hsl(195 9% 15%) 100%);
+  --beige: #E0DFD1;
+  --near-black: #0c0c0c;
+
+  --gradient-hero: linear-gradient(180deg, hsl(0 0% 5% / 0.2) 0%, hsl(0 0% 5% / 0.85) 100%);
+  --gradient-navy: linear-gradient(135deg, hsl(0 0% 5%) 0%, hsl(0 0% 12%) 100%);
   --gradient-gold: linear-gradient(135deg, hsl(48 35% 42%) 0%, hsl(48 22% 51%) 100%);
 
-  --shadow-elegant: 0 20px 50px -20px hsl(195 9% 9% / 0.25);
-  --shadow-soft: 0 4px 20px -4px hsl(195 9% 9% / 0.12);
+  --shadow-elegant: 0 20px 50px -20px hsl(0 0% 0% / 0.45);
+  --shadow-soft: 0 4px 20px -4px hsl(0 0% 0% / 0.35);
   --shadow-gold: 0 10px 30px -10px hsl(48 35% 42% / 0.4);
 
   --transition-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+html[data-theme='light'] {
+  --background: 48 20% 95%; /* #f5f4ef */
+  --foreground: 195 9% 9%; /* #141718 */
+
+  --card: 0 0% 100%;
+  --card-foreground: 195 9% 9%;
+
+  --popover: 0 0% 100%;
+  --popover-foreground: 195 9% 9%;
+
+  --secondary: 48 22% 51%;
+  --secondary-foreground: 0 0% 100%;
+
+  --muted: 52 19% 88%;
+  --muted-foreground: 0 0% 21%;
+
+  --border: 195 9% 9% / 0.12;
+  --input: 195 9% 9% / 0.12;
+
+  --gradient-hero: linear-gradient(180deg, hsl(195 9% 9% / 0.15) 0%, hsl(195 9% 9% / 0.75) 100%);
+  --gradient-navy: linear-gradient(135deg, hsl(195 9% 9%) 0%, hsl(195 9% 15%) 100%);
+
+  --shadow-elegant: 0 20px 50px -20px hsl(195 9% 9% / 0.2);
+  --shadow-soft: 0 4px 20px -4px hsl(195 9% 9% / 0.1);
 }
 
 * {
@@ -133,11 +158,16 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
+  color-scheme: dark;
+}
+
+html[data-theme='light'] {
+  color-scheme: light;
 }
 
 [dir='rtl'] {
-  --font-sans: 'BentonSans', system-ui, sans-serif;
-  --font-display: 'Cera Pro', system-ui, sans-serif;
+  --font-sans: 'PP Neue Montreal Arabic', 'PP Telegraf', system-ui, sans-serif;
+  --font-display: 'PP Neue Montreal Arabic', 'PP Telegraf', system-ui, sans-serif;
 }
 
 body {
@@ -149,6 +179,7 @@ body {
 
 #root {
   font-family: inherit;
+  min-height: 100dvh;
 }
 
 #root h1,
@@ -166,10 +197,6 @@ body {
   font-weight: 700;
 }
 
-#root {
-  min-height: 100dvh;
-}
-
 /* Safe area insets for mobile */
 .safe-top {
   padding-top: env(safe-area-inset-top, 0px);
@@ -179,15 +206,8 @@ body {
   padding-bottom: env(safe-area-inset-bottom, 0px);
 }
 
-/* Reserve space for fixed bottom nav on small screens only (nav is hidden from md up) */
 .main-content {
   padding-bottom: env(safe-area-inset-bottom, 0px);
-}
-
-@media (max-width: 899.98px) {
-  .main-content {
-    padding-bottom: calc(64px + env(safe-area-inset-bottom, 0px));
-  }
 }
 
 /* Achievements (Tailwind page) helpers */
@@ -263,7 +283,6 @@ body {
   transition-delay: 480ms;
 }
 
-/* Correct scrollbar selectors */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -274,34 +293,58 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #e2e8f0;
+  background: hsl(var(--muted-foreground) / 0.35);
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #718096;
-}
-
-/* Scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #e2e8f0;
-  border-radius: 3px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #718096;
+  background: hsl(var(--primary));
 }
 
 .leaflet-div-icon.project-map-pin {
   background: transparent;
   border: none;
+}
+
+.projects-map-monochrome .leaflet-tile-pane {
+  filter: grayscale(1) contrast(1.04) brightness(1.03);
+}
+
+.projects-map-monochrome .leaflet-control-attribution {
+  display: none;
+}
+
+.cloudastick-map-footnote {
+  position: absolute;
+  right: 8px;
+  bottom: 72px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin: 0;
+  padding: 2px 6px;
+  background: rgba(255, 255, 255, 0.86);
+  color: #333;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  font: 11px/1.35 "Helvetica Neue", Arial, sans-serif;
+  white-space: nowrap;
+  max-width: min(72vw, 280px);
+  pointer-events: none;
+}
+
+.cloudastick-map-footnote .cloudastick-map-logo {
+  height: 18px;
+  width: 18px;
+  object-fit: contain;
+  display: inline-block;
+  flex: 0 0 18px;
+  background: #000;
+  border-radius: 3px;
+}
+
+.cloudastick-map-footnote .cloudastick-map-label {
+  font-weight: 400;
 }

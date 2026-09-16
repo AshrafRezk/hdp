@@ -462,7 +462,11 @@ function pickMediaFromAttachments(attachments: Array<{ title: string; fileExtens
         if (!media.heroUrl) media.heroUrl = a.url;
       } else if (title.includes('project-video-advert') || title.includes('video advert')) {
         if (!media.videoUrl) media.videoUrl = a.url;
-      } else if (title.includes('project-top-plan') || title.includes('project top plan')) {
+      } else if (
+        title.includes('project-top-plan') ||
+        title.includes('project top plan') ||
+        title.includes('location in project')
+      ) {
         if (!media.topPlanUrl) media.topPlanUrl = a.url;
       } else if (title.includes('project-brochure') || title.includes('project brochure')) {
         if (!media.brochureUrl) media.brochureUrl = a.url;
@@ -494,6 +498,100 @@ function pickMediaFromAttachments(attachments: Array<{ title: string; fileExtens
   return media;
 }
 
+function isLocationInProjectTitle(title?: string) {
+  const t = (title || '').toLowerCase()
+  return t.includes('location in project') || t.includes('location-in-project')
+}
+
+function isLayoutPlanTitle(title?: string) {
+  return (title || '').toLowerCase().includes('layout plan')
+}
+
+async function getContentVersionsForEntities(entityIds: string[]) {
+  const uniqueIds = Array.from(new Set(entityIds.filter(Boolean)))
+  if (uniqueIds.length === 0) return [] as Array<SalesforceContentVersionRecord & { LinkedEntityId: string }>
+
+  const idsSoql = uniqueIds.map((id) => `'${id}'`).join(',')
+  const linksQuery = `SELECT ContentDocumentId, LinkedEntityId
+                      FROM ContentDocumentLink
+                      WHERE LinkedEntityId IN (${idsSoql})`
+  const linksResult = await salesforceQuery<SalesforceContentDocumentLinkRecord>(linksQuery)
+  const links = linksResult.records || []
+  const documentIds = Array.from(new Set(links.map((l) => l.ContentDocumentId).filter(Boolean)))
+  if (documentIds.length === 0) return []
+
+  const docIdsSoql = documentIds.map((id) => `'${id}'`).join(',')
+  const versionsQuery = `SELECT Id, Title, FileExtension, FileType, ContentDocumentId, CreatedDate
+                         FROM ContentVersion
+                         WHERE IsLatest = true
+                         AND ContentDocumentId IN (${docIdsSoql})
+                         ORDER BY CreatedDate DESC`
+  const versionsResult = await salesforceQuery<SalesforceContentVersionRecord>(versionsQuery)
+  const versionByDocId = new Map<string, SalesforceContentVersionRecord>()
+  for (const v of versionsResult.records || []) {
+    if (!versionByDocId.has(v.ContentDocumentId)) versionByDocId.set(v.ContentDocumentId, v)
+  }
+
+  const out: Array<SalesforceContentVersionRecord & { LinkedEntityId: string }> = []
+  for (const link of links) {
+    const version = versionByDocId.get(link.ContentDocumentId)
+    if (!version || isSalesforceNoteVersion(version)) continue
+    out.push({ ...version, LinkedEntityId: link.LinkedEntityId })
+  }
+  return out
+}
+
+/** Unit files titled "Location in Project" — HDP master plan / unit location on the project. */
+async function getTopPlanUrlsFromUnitLocationFiles(projectIds: string[]) {
+  const urls = new Map<string, string>()
+  if (projectIds.length === 0) return urls
+  const idsSoql = projectIds.map((id) => `'${id}'`).join(',')
+  try {
+    const unitsResult = await salesforceQuery<{ Id: string; Project__c?: string }>(
+      `SELECT Id, Project__c FROM Unit__c
+       WHERE Project__c IN (${idsSoql}) AND Unit_Status__c = 'Available'
+       ORDER BY LastModifiedDate DESC
+       LIMIT 120`
+    )
+    const units = unitsResult.records || []
+    const unitToProject = new Map<string, string>()
+    for (const unit of units) {
+      const projectId = extractSalesforceIdFromAnchor(unit.Project__c) || unit.Project__c || ''
+      if (projectId) unitToProject.set(unit.Id, projectId)
+    }
+    const versions = await getContentVersionsForEntities(Array.from(unitToProject.keys()))
+    for (const version of versions) {
+      if (!isLocationInProjectTitle(version.Title)) continue
+      const projectId = unitToProject.get(version.LinkedEntityId)
+      if (!projectId || urls.has(projectId)) continue
+      urls.set(projectId, salesforceFileProxyUrl(version.Id))
+    }
+  } catch (error) {
+    console.warn('[Projects] Unit location-in-project files failed:', error)
+  }
+  return urls
+}
+
+async function getUnitPlanFiles(unitId: string) {
+  const empty = { locationInProject: undefined as string | undefined, floorPlan: undefined as string | undefined }
+  try {
+    const versions = await getContentVersionsForEntities([unitId])
+    let locationInProject: string | undefined
+    let floorPlan: string | undefined
+    for (const version of versions) {
+      if (!locationInProject && isLocationInProjectTitle(version.Title)) {
+        locationInProject = salesforceFileProxyUrl(version.Id)
+      } else if (!floorPlan && isLayoutPlanTitle(version.Title)) {
+        floorPlan = salesforceFileProxyUrl(version.Id)
+      }
+    }
+    return { locationInProject, floorPlan }
+  } catch (error) {
+    console.warn('[Units] Unit plan attachments failed:', error)
+    return empty
+  }
+}
+
 // Projects
 const DEFAULT_PROJECTS_PAGE_SIZE = 4
 
@@ -501,7 +599,7 @@ export async function getProjects(options?: {
   projectType?: string
   page?: number
   pageSize?: number
-  /** Load all map-eligible projects (centroid/geometry + visible on map). No pagination. */
+  /** Load all projects that have Map_Geometry_JSON__c. No pagination. */
   forMap?: boolean
 }) {
   const projectType = options?.projectType?.trim()
@@ -511,7 +609,7 @@ export async function getProjects(options?: {
   const isPaginated = !forMap && typeof page === 'number' && page > 0
 
   const CACHE_KEY = forMap
-    ? `binsaedan_projects_map_v1_${projectType?.toLowerCase() || 'all'}`
+    ? `hdp_projects_map_v2_${projectType?.toLowerCase() || 'all'}`
     : isPaginated
       ? `binsaedan_projects_cache_v9_${projectType?.toLowerCase() || 'all'}_p${page}_s${pageSize}`
       : projectType
@@ -595,12 +693,13 @@ export async function getProjects(options?: {
     }
 
     const projectIds = sfProjects.map((p) => p.Id)
-    const [mediaByProjectId, availableUnitsByProjectId] = await Promise.all([
+    const [mediaByProjectId, availableUnitsByProjectId, unitTopPlansByProjectId] = await Promise.all([
       getProjectsMedia(projectIds),
       getAvailableUnitsCountsForProjects(projectIds).catch((error) => {
         console.warn('[Projects] Live unit counts failed, using rollup fallback:', error)
         return new Map<string, number>()
       }),
+      getTopPlanUrlsFromUnitLocationFiles(projectIds),
     ])
 
     // Transform to application format
@@ -641,7 +740,7 @@ export async function getProjects(options?: {
         description,
         descriptionAr,
         logoUrl: resolveProjectLogoUrl(media, p.Logo_URL__c),
-        topPlanUrl: media.topPlanUrl,
+        topPlanUrl: media.topPlanUrl || unitTopPlansByProjectId.get(p.Id),
         gallery: media.gallery || [],
         phases: [],
         // UI Helpers (kept for compatibility)
@@ -935,10 +1034,11 @@ export async function getProject(id: string) {
       return { success: false, error: 'Project not found in Salesforce' }
     }
 
-    const [{ notes, attachments: allAttachments }, availableUnitsCount, nearbyLocations] = await Promise.all([
+    const [{ notes, attachments: allAttachments }, availableUnitsCount, nearbyLocations, unitTopPlans] = await Promise.all([
       getProjectNotesAndAttachments(id),
       getAvailableUnitsCountForProject(id, p.Available_Units__c),
       getProjectNearbyLocations(id),
+      getTopPlanUrlsFromUnitLocationFiles([id]),
     ])
     const modelFiles = extractProjectModelFiles(allAttachments)
     const attachments = allAttachments.filter((a) => !isModelAttachmentTitle(a.title))
@@ -981,7 +1081,7 @@ export async function getProject(id: string) {
           ? normalizeUrl((p.Office_Location__c as string).trim())
           : undefined,
         logoUrl: resolveProjectLogoUrl(media, p.Logo_URL__c),
-        topPlanUrl: media.topPlanUrl,
+        topPlanUrl: media.topPlanUrl || unitTopPlans.get(id),
         brochureUrl: media.brochureUrl,
         gallery: media.gallery,
         modelFiles,
@@ -1357,6 +1457,7 @@ export async function getUnit(id: string) {
       Garden_Area__c, Land_Area__c, Roof_Area__c, Outdoor_Area__c,
       Eligible_for_Subsidies__c, Subsidies__c,
       Unit_Image__c, X3D_Warehouse_iframe__c, Model__c,
+      Layout_Plan__c, Location_in_Project__c,
       Project__c,
       Phase__c,
       Block__c,
@@ -1391,6 +1492,8 @@ export async function getUnit(id: string) {
       Unit_Image__c?: string
       X3D_Warehouse_iframe__c?: string
       Model__c?: string
+      Layout_Plan__c?: string
+      Location_in_Project__c?: string
       Project__c?: string
       Phase__c?: string
       Block__c?: string
@@ -1427,6 +1530,12 @@ export async function getUnit(id: string) {
       } catch (e) {
         console.warn('[Units] Optional Project__c lookup failed (unit still returned):', e)
       }
+    }
+
+    const planFiles = await getUnitPlanFiles(record.Id)
+    const publicFileUrl = (value?: string) => {
+      const trimmed = (value || '').trim()
+      return /^https?:\/\//i.test(trimmed) ? trimmed : undefined
     }
 
     const embed = record.X3D_Warehouse_iframe__c || ''
@@ -1469,7 +1578,8 @@ export async function getUnit(id: string) {
       deliveryDate: undefined,
       images: record.Unit_Image__c ? [record.Unit_Image__c] : [],
       unitImage: record.Unit_Image__c || undefined,
-      floorPlan: undefined,
+      floorPlan: planFiles.floorPlan || publicFileUrl(record.Layout_Plan__c),
+      locationInProject: planFiles.locationInProject || publicFileUrl(record.Location_in_Project__c),
       sketchupEmbedUrl: embedSrc || undefined,
       amenities: undefined,
       description: undefined,

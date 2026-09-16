@@ -23,7 +23,7 @@ export default function OurFieldsSection() {
   return (
     <Box
       id="our-fields"
-      sx={{ py: 8, px: { xs: 2, md: 3 }, bgcolor: 'rgba(255, 255, 255, 0.4)', backdropFilter: 'blur(20px)' }}
+      sx={{ py: 8, px: { xs: 2, md: 3 }, bgcolor: 'background.paper' }}
     >
       <Container maxWidth="xl">
         <motion.div

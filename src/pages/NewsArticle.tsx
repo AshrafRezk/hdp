@@ -141,7 +141,7 @@ export default function NewsArticle() {
             boxShadow: '0 10px 40px rgba(0,0,0,0.1)',
             zIndex: 10
           }}>
-            <Box component={Link} to="/news" sx={{ display: 'flex', alignItems: 'center', gap: 1, color: 'text.secondary', textDecoration: 'none', mb: 3, '&:hover': { color: 'primary.main' } }}>
+            <Box component={Link} to="/media-center" sx={{ display: 'flex', alignItems: 'center', gap: 1, color: 'text.secondary', textDecoration: 'none', mb: 3, '&:hover': { color: 'primary.main' } }}>
               {isRtl ? <ArrowRight size={16} /> : <ArrowLeft size={16} />}
               <Typography variant="caption" sx={{ textTransform: 'uppercase', letterSpacing: 1, fontWeight: 600 }}>
                 {t('news.backToListings', 'BACK TO LISTINGS')}
@@ -217,7 +217,7 @@ export default function NewsArticle() {
                 const pDate = post.publicationDate ? new Date(post.publicationDate) : null
                 return (
                   <Grid item xs={12} sm={6} md={4} key={post.id}>
-                    <Box component={Link} to={`/news/${post.id}`} sx={{ textDecoration: 'none', color: 'inherit', display: 'block', '&:hover img': { transform: 'scale(1.05)' } }}>
+                    <Box component={Link} to={`/media-center/${post.id}`} sx={{ textDecoration: 'none', color: 'inherit', display: 'block', '&:hover img': { transform: 'scale(1.05)' } }}>
                       <Box sx={{ overflow: 'hidden', height: 200, mb: 2 }}>
                         <Box
                           component="img"

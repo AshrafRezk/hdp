@@ -421,11 +421,32 @@ export default function UnitDetails() {
               </Box>
             )}
 
+            {/* Location in Project */}
+            {unit.locationInProject && (
+              <Box sx={{ mb: 4 }}>
+                <Typography variant="h6" fontWeight="semibold" gutterBottom sx={{ mb: 2 }}>
+                  {i18n.language === 'ar' ? 'الموقع في المشروع' : 'Location in Project'}
+                </Typography>
+                <Card>
+                  <Box
+                    component="img"
+                    src={unit.locationInProject}
+                    alt="Location in Project"
+                    sx={{
+                      width: '100%',
+                      height: 'auto',
+                      display: 'block',
+                    }}
+                  />
+                </Card>
+              </Box>
+            )}
+
             {/* Floor Plan */}
             {unit.floorPlan && (
               <Box sx={{ mb: 4 }}>
                 <Typography variant="h6" fontWeight="semibold" gutterBottom sx={{ mb: 2 }}>
-                  {i18n.language === 'ar' ? 'الخريطة' : 'Floor Plan'}
+                  {i18n.language === 'ar' ? 'مخطط الوحدة' : 'Layout Plan'}
                 </Typography>
                 <Card>
                   <Box

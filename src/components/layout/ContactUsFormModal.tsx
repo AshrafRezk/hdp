@@ -29,7 +29,7 @@ export default function ContactUsFormModal({ open, onClose }: ContactUsFormModal
           },
         },
         backdrop: {
-          sx: { backdropFilter: 'blur(4px)' },
+          sx: { bgcolor: 'rgba(0,0,0,0.5)' },
         },
       }}
       PaperProps={{

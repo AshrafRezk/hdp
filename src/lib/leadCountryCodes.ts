@@ -1,5 +1,6 @@
-/** GCC / common country codes for lead phone entry (value matches Salesforce Mobile_Country__c). */
+/** Egypt / common country codes for lead phone entry (value matches Salesforce Mobile_Country__c). */
 export const LEAD_COUNTRY_CODES = [
+  { value: '+20', dial: '20', labelEn: 'Egypt', labelAr: 'مصر' },
   { value: '+966', dial: '966', labelEn: 'Saudi Arabia', labelAr: 'السعودية' },
   { value: '+971', dial: '971', labelEn: 'UAE', labelAr: 'الإمارات' },
   { value: '+965', dial: '965', labelEn: 'Kuwait', labelAr: 'الكويت' },
@@ -8,7 +9,7 @@ export const LEAD_COUNTRY_CODES = [
   { value: '+968', dial: '968', labelEn: 'Oman', labelAr: 'عُمان' },
 ] as const
 
-export const DEFAULT_LEAD_COUNTRY_CODE = '+966'
+export const DEFAULT_LEAD_COUNTRY_CODE = '+20'
 
 export function countryCodeLabel(
   code: (typeof LEAD_COUNTRY_CODES)[number],

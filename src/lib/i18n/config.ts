@@ -16,29 +16,31 @@ i18n
         translation: enTranslations,
       },
     },
-    fallbackLng: 'ar',
-    lng: 'ar', // Default to Arabic
+    fallbackLng: 'en',
+    lng: 'en',
     interpolation: {
       escapeValue: false,
     },
     detection: {
-      order: ['localStorage', 'navigator'],
+      // Prefer English by default; ignore stale FBS Arabic preference in old storage key
+      order: ['localStorage', 'htmlTag'],
       caches: ['localStorage'],
-      lookupLocalStorage: 'i18nextLng',
+      lookupLocalStorage: 'hdp-i18nextLng',
     },
   })
   .then(() => {
-    // Update HTML lang and dir attributes on initialization
-    const lang = i18n.language || 'ar'
+    const lang = (i18n.language || 'en').startsWith('ar') ? 'ar' : 'en'
+    if (!i18n.language?.startsWith('ar') && !i18n.language?.startsWith('en')) {
+      void i18n.changeLanguage('en')
+    }
     document.documentElement.lang = lang
     document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr'
   })
 
-// Listen for language changes
 i18n.on('languageChanged', (lng) => {
-  document.documentElement.lang = lng
-  document.documentElement.dir = lng === 'ar' ? 'rtl' : 'ltr'
+  const lang = lng.startsWith('ar') ? 'ar' : 'en'
+  document.documentElement.lang = lang
+  document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr'
 })
 
 export default i18n
-

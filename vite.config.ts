@@ -15,40 +15,52 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: [
         'favicon.ico',
+        'favicon.svg',
+        'favicon-16x16.png',
+        'favicon-32x32.png',
+        'apple-touch-icon.png',
         'icons/*.png',
-        'FBS logo acronim.svg',
-        'FBS_Logo_Vertical_AR.png',
+        'hdp-logo.svg',
         'appicon.png',
       ],
       manifest: {
-        name: 'فيصل بن سعيدان | Faisal Bin Saedan Properties',
-        short_name: 'Bin Saedan',
-        description: 'اكتشف أرقى المشاريع العقارية مع مجموعة فيصل بن سعيدان',
-        theme_color: '#1a365d',
-        background_color: '#fafafa',
+        name: 'HDP | Housing and Development Properties',
+        short_name: 'HDP',
+        description: 'Explore HDP residential and mixed-use developments across Egypt',
+        theme_color: '#0c0c0c',
+        background_color: '#0c0c0c',
         display: 'standalone',
         orientation: 'portrait-primary',
         scope: '/',
         start_url: '/',
         icons: [
           {
-            src: '/appicon.png',
+            src: '/icons/icon-192x192.png',
             sizes: '192x192',
             type: 'image/png',
             purpose: 'any'
           },
           {
-            src: '/appicon.png',
+            src: '/icons/icon-512x512.png',
             sizes: '512x512',
             type: 'image/png',
-            purpose: 'any maskable'
+            purpose: 'any'
+          },
+          {
+            src: '/icons/icon-512x512.png',
+            sizes: '512x512',
+            type: 'image/png',
+            purpose: 'maskable'
           }
         ],
-        lang: 'ar',
-        dir: 'rtl'
+        lang: 'en',
+        dir: 'ltr'
       },
       workbox: {
-        globPatterns: ['**/*.{js,css,html,ico,png,svg,woff2}'],
+        // Large hero video / marketing imagery should stream, not precache
+        globPatterns: ['**/*.{js,css,html,ico,svg,woff2}'],
+        globIgnores: ['**/videos/**', '**/hdp-live/**'],
+        maximumFileSizeToCacheInBytes: 3 * 1024 * 1024,
         runtimeCaching: [
           {
             urlPattern: /^https:\/\/images\.unsplash\.com\/.*/i,
@@ -58,6 +70,17 @@ export default defineConfig({
               expiration: {
                 maxEntries: 50,
                 maxAgeSeconds: 60 * 60 * 24 * 30 // 30 days
+              }
+            }
+          },
+          {
+            urlPattern: /\/(videos|hdp-live)\/.*/i,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'hdp-media',
+              expiration: {
+                maxEntries: 30,
+                maxAgeSeconds: 60 * 60 * 24 * 14
               }
             }
           },

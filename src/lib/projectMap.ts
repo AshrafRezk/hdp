@@ -106,15 +106,18 @@ export function resolveProjectShowOnMap(record: {
   return record.Map_Show_On_Map__c !== false
 }
 
+export function projectHasMapGeometry(project: {
+  mapGeometryJson?: unknown
+}): boolean {
+  return isPolygon(project.mapGeometryJson) || isMultiPolygon(project.mapGeometryJson)
+}
+
 export function projectHasMapData(project: {
   mapCentroidLat?: number
   mapCentroidLng?: number
   mapGeometryJson?: unknown
 }): boolean {
-  if (typeof project.mapCentroidLat === 'number' && typeof project.mapCentroidLng === 'number') {
-    return true
-  }
-  return isPolygon(project.mapGeometryJson) || isMultiPolygon(project.mapGeometryJson)
+  return projectHasMapGeometry(project)
 }
 
 export function resolveMapCentroid(project: {
@@ -145,7 +148,7 @@ export function filterMapEligibleProjects<T extends {
   mapCentroidLng?: number
   mapGeometryJson?: unknown
 }>(projects: T[]): T[] {
-  return projects.filter((p) => p.showOnMap !== false && projectHasMapData(p))
+  return projects.filter((p) => p.showOnMap !== false && projectHasMapGeometry(p))
 }
 
 export function unitHasMapData(unit: {

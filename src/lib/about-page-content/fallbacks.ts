@@ -45,27 +45,27 @@ function buildFallbackBoardMembers(): AboutBoardMember[] {
 }
 
 const visionEn = [
-  'To be a globally respected real estate investment and development leader—creating sustainable, innovative destinations that elevate communities across Saudi Arabia, grounded in a legacy that dates back to 1934.',
+  'To be the leading real estate developer in Egypt, setting new standards for innovation, quality, and community building.',
 ]
 
 const visionAr = [
-  'أن نكون شركة رائدة عالميًا في الاستثمار والتطوير العقاري—نُنشئ وجهات مستدامة ومبتكرة ترتقي بالمجتمعات في المملكة، مستندين إلى إرث عائلة بن سعيدان الممتد منذ عام 1934.',
+  'أن نكون المطوّر العقاري الرائد في مصر، واضعين معايير جديدة للابتكار والجودة وبناء المجتمعات.',
 ]
 
 const missionEn = [
-  'Develop high-quality residential and commercial destinations, including branded communities such as Malfa and Nozol.',
-  'Offer structured, well-governed investment opportunities through professionally managed real estate funds.',
-  'Protect long-term value through end-to-end property management: maintenance, leasing, and customer care beyond delivery.',
-  'Deliver with modern practices (e.g., BIM) to improve efficiency, reduce waste, and enhance design quality.',
-  'Support Saudi Vision 2030 by contributing to homeownership growth and developing local talent.',
+  'Carving a lasting legacy of unprecedented quality and added value by harnessing the power of creativity through forward communities.',
+  'Deliver bespoke residential and mixed-use offerings in prime locations across Egypt.',
+  'Act as the real estate investment and development arm of the Housing and Development Bank.',
+  'Create flexible investment opportunities that meet diverse market needs.',
+  'We believe in creating spaces that inspire and communities that thrive, driven by innovation and guided by our commitment to excellence.',
 ]
 
 const missionAr = [
-  'تطوير وجهات سكنية وتجارية عالية الجودة، بما يشمل مجتمعات بعلامات مثل «ملفا» و«نُزُل».',
-  'تقديم فرص استثمارية منظمة عبر صناديق استثمار عقاري مُدارة باحتراف ضمن أعلى معايير الحوكمة والشفافية.',
-  'الحفاظ على القيمة طويلة الأمد عبر إدارة ممتلكات متكاملة: صيانة، وتأجير، وخدمة عملاء بعد التسليم.',
-  'التنفيذ بممارسات حديثة (مثل BIM) لرفع الكفاءة وتقليل الهدر وتحسين جودة التصميم.',
-  'دعم مستهدفات رؤية السعودية 2030 عبر الإسهام في رفع التملك وتنمية الكفاءات الوطنية.',
+  'صناعة إرث دائم من الجودة والقيمة المضافة عبر الإبداع وبناء مجتمعات متقدمة.',
+  'تقديم عروض سكنية ومتعددة الاستخدامات مميزة في مواقع رئيسية بأنحاء مصر.',
+  'العمل كذراع الاستثمار والتطوير العقاري لبنك الإسكان والتعمير.',
+  'ابتكار فرص استثمارية مرنة تلبي احتياجات السوق المتنوعة.',
+  'نؤمن بصناعة مساحات تلهم ومجتمعات تزدهر، مدفوعة بالابتكار وملتزمة بالتميز.',
 ]
 
 /** Default About page content when Salesforce has no matching PWA_Content__c records. */

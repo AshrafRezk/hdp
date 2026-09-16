@@ -175,7 +175,7 @@ export default function HeroSection() {
               backgroundPosition: 'center',
             }}
           >
-            <Box sx={{ textAlign: 'center', color: 'white', p: 2, bgcolor: 'rgba(0, 0, 0, 0.5)', borderRadius: 2, backdropFilter: 'blur(10px)' }}>
+            <Box sx={{ textAlign: 'center', color: 'white', p: 2, bgcolor: 'rgba(0, 0, 0, 0.55)', borderRadius: 2 }}>
               <Typography variant="body1" fontWeight="bold">{t('home.watchOnInstagram', 'Watch video on Instagram')}</Typography>
             </Box>
           </Box>
@@ -277,7 +277,7 @@ export default function HeroSection() {
           bottom: 0,
           zIndex: 0,
           overflow: 'hidden',
-          bgcolor: '#102d4a',
+          bgcolor: '#0c0c0c',
           '& > *': { width: '100%', height: '100%' },
         }}
       >
@@ -288,7 +288,7 @@ export default function HeroSection() {
             zIndex: 1,
             background: featuredVideo?.coverImageUrl
               ? `url(${featuredVideo.coverImageUrl}) center/cover`
-              : 'linear-gradient(135deg, #102d4a 0%, #1e4670 100%)',
+              : 'linear-gradient(135deg, #0c0c0c 0%, #1a1a1a 100%)',
           }}
         />
 
@@ -334,7 +334,7 @@ export default function HeroSection() {
             inset: 0,
             zIndex: 4,
             background:
-              'linear-gradient(to bottom, rgba(16, 45, 74, 0.55) 0%, rgba(16, 45, 74, 0.35) 45%, rgba(16, 45, 74, 0.65) 100%)',
+              'linear-gradient(to bottom, rgba(12, 12, 12, 0.45) 0%, rgba(12, 12, 12, 0.25) 45%, rgba(12, 12, 12, 0.7) 100%)',
             pointerEvents: 'none',
           }}
         />
@@ -352,10 +352,31 @@ export default function HeroSection() {
           flexDirection: 'column',
           flexGrow: 1,
           justifyContent: 'center',
+          alignItems: 'center',
+          textAlign: 'center',
         }}
       >
-        <Box sx={{ maxWidth: { xs: '100%', md: '42rem' } }}>
-          <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}>
+        <Box sx={{ maxWidth: { xs: '100%', md: '48rem' } }}>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1.5, ease: 'easeOut' }}
+          >
+            <Box
+              component="img"
+              src="/hdp-logo.svg"
+              alt="HDP"
+              sx={{
+                height: { xs: 36, md: 48 },
+                width: 'auto',
+                mb: 4,
+                mx: 'auto',
+                display: 'block',
+                filter: 'brightness(0) invert(1)',
+              }}
+            />
+          </motion.div>
+          <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.35, ease: 'easeOut' }}>
             <Typography
               variant="h1"
               sx={{
@@ -369,17 +390,31 @@ export default function HeroSection() {
             >
               {text(content.hero.titleLine1)}
             </Typography>
+            <Typography
+              variant="h2"
+              sx={{
+                fontSize: { xs: '1.75rem', sm: '2.25rem', md: '2.75rem' },
+                fontWeight: 300,
+                color: 'rgba(255,255,255,0.92)',
+                lineHeight: 1.2,
+                mt: 1,
+                letterSpacing: '0.04em',
+              }}
+            >
+              {text(content.hero.titleLine2)}
+            </Typography>
           </motion.div>
 
-          <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.4, ease: 'easeOut' }}>
+          <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.55, ease: 'easeOut' }}>
             <Typography
               variant="body1"
               sx={{
-                color: 'rgba(255, 255, 255, 0.92)',
-                fontWeight: 500,
+                color: 'rgba(255, 255, 255, 0.88)',
+                fontWeight: 400,
                 lineHeight: 1.6,
                 fontSize: { xs: '1rem', md: '1.25rem' },
                 maxWidth: '480px',
+                mx: 'auto',
                 mt: { xs: 3, md: 4 },
                 textShadow: '0 1px 12px rgba(0, 0, 0, 0.3)',
               }}

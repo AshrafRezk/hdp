@@ -196,7 +196,7 @@ export default function ProjectUnitsMap({
                 <Typography variant="caption" display="block">{unit.status}</Typography>
                 {typeof unit.price === 'number' && (
                   <Typography variant="caption" display="block">
-                    {unit.price.toLocaleString()} SAR
+                    {unit.price.toLocaleString()} EGP
                   </Typography>
                 )}
               </Box>
