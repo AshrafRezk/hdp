@@ -5,6 +5,7 @@ import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import { Box, Paper, Typography } from '@mui/material'
 import { MapPin } from 'lucide-react'
+import CloudastickMapFootnote from '../map/CloudastickMapFootnote'
 
 type GeoJsonPolygon = {
   type: 'Polygon'
@@ -74,17 +75,15 @@ export default function OpenStreetProjectMap({
   const center: LatLngExpression = centroid ? [centroid.lat, centroid.lng] : polygons[0][0]
 
   return (
-    <Box sx={{ width: '100%', height, borderRadius: 2, overflow: 'hidden', border: 1, borderColor: 'divider' }}>
+    <Box className="projects-map-monochrome" sx={{ position: 'relative', width: '100%', height, borderRadius: 2, overflow: 'hidden', border: 1, borderColor: 'divider' }}>
       <MapContainer
         center={center}
         zoom={zoom}
-        style={{ width: '100%', height: '100%' }}
+        style={{ width: '100%', height: '100%', background: '#e8e8e8' }}
         scrollWheelZoom
+        attributionControl={false}
       >
-        <TileLayer
-          attribution='&copy; Google Maps'
-          url="https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}"
-        />
+        <TileLayer attribution="" url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
         {centroid && <Marker position={[centroid.lat, centroid.lng]} icon={defaultMarkerIcon} />}
         {polygons.map((ring, idx) => (
           <Polygon
@@ -94,6 +93,7 @@ export default function OpenStreetProjectMap({
           />
         ))}
       </MapContainer>
+      <CloudastickMapFootnote />
     </Box>
   )
 }

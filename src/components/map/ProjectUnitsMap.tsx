@@ -4,6 +4,7 @@ import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import { Box, Chip, Stack, Typography } from '@mui/material'
 import { MapPin } from 'lucide-react'
+import CloudastickMapFootnote from './CloudastickMapFootnote'
 import type { ProjectMapUnit } from '../../lib/types'
 import {
   geometryToLatLngRings,
@@ -149,12 +150,15 @@ export default function ProjectUnitsMap({
   }
 
   return (
-    <Box sx={{ position: 'relative', width: '100%', height }}>
-      <MapContainer center={center} zoom={15} style={{ width: '100%', height: '100%' }} scrollWheelZoom>
-        <TileLayer
-          attribution="&copy; Google Maps"
-          url="https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}"
-        />
+    <Box className="projects-map-monochrome" sx={{ position: 'relative', width: '100%', height }}>
+      <MapContainer
+        center={center}
+        zoom={15}
+        style={{ width: '100%', height: '100%', background: '#e8e8e8' }}
+        scrollWheelZoom
+        attributionControl={false}
+      >
+        <TileLayer attribution="" url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
         <MapResizeInvalidate />
         <MapFitBounds
           projectGeometry={projectGeometry}
@@ -239,6 +243,7 @@ export default function ProjectUnitsMap({
           })}
         </Stack>
       )}
+      <CloudastickMapFootnote />
     </Box>
   )
 }

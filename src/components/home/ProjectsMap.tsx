@@ -11,7 +11,7 @@ import CloudastickMapFootnote from '../map/CloudastickMapFootnote'
 import type { Project } from '../../lib/types'
 
 const EGYPT_CENTER: LatLngExpression = [26.8, 30.8]
-const MONOCHROME_TILES = 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png'
+const OSM_TILES = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
 
 type ProjectWithAvailability = Project & {
   hasAvailability?: boolean
@@ -280,7 +280,7 @@ export default function ProjectsMap({ sx, highlightedProjectId, onProjectSelect,
         scrollWheelZoom
         attributionControl={false}
       >
-        <TileLayer attribution="" url={MONOCHROME_TILES} />
+        <TileLayer attribution="" url={OSM_TILES} />
 
         <MapResizeInvalidate />
         <MapController
